@@ -35,7 +35,7 @@ public class ScoreMain extends JFrame {
 		setBounds(100, 100, 633, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(0, 10));
 		setContentPane(contentPane);
 		
 		JPanel pBtn = new JPanel();
