@@ -6,12 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import std_score_management.ui.ScoreManager;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class ScoreMain extends JFrame {
+public class ScoreMain extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton btnStdScore;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,7 +50,8 @@ public class ScoreMain extends JFrame {
 		JButton btnStd = new JButton("학생정보");
 		pBtn.add(btnStd);
 		
-		JButton btnStdScore = new JButton("학생 성적 입력");
+		btnStdScore = new JButton("학생 성적 입력");
+		btnStdScore.addActionListener(this);
 		pBtn.add(btnStdScore);
 		
 		JButton btnScoreByBan = new JButton("분반별 성적 확인");
@@ -57,4 +64,13 @@ public class ScoreMain extends JFrame {
 		contentPane.add(pStdList, BorderLayout.CENTER);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnStdScore) {
+			actionPerformedBtnStdScore(e);
+		}
+	}
+	protected void actionPerformedBtnStdScore(ActionEvent e) {
+		ScoreManager frame = new ScoreManager();
+		frame.setVisible(true);
+	}
 }
