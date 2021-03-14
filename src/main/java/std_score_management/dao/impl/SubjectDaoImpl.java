@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import std_score_management.dao.SubjectDao;
-import std_score_management.dto.Department;
 import std_score_management.dto.Subject;
 import std_score_management.util.JdbcUtil;
 
