@@ -1,4 +1,4 @@
-package std_score_management.exception;
+package std_score_management.ui.exception;
 
 @SuppressWarnings("serial")
 public class NotSelectedException extends RuntimeException {

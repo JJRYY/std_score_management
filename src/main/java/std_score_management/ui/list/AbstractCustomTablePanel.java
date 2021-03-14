@@ -1,4 +1,4 @@
-package std_score_management.list;
+package std_score_management.ui.list;
 
 import java.awt.BorderLayout;
 import java.util.List;
@@ -15,7 +15,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import std_score_management.exception.NotSelectedException;
+import std_score_management.ui.exception.NotSelectedException;
 
 
 @SuppressWarnings("serial")
