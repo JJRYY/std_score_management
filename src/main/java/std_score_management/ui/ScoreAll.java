@@ -25,11 +25,11 @@ public class ScoreAll extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		ScoreAllTopPanel pNorth = new ScoreAllTopPanel();
-		contentPane.add(pNorth, BorderLayout.NORTH);
+		ScoreAllTopPanel pContent = new ScoreAllTopPanel();
+		contentPane.add(pContent, BorderLayout.NORTH);
 		
-		JPanel pCenter = new JPanel();
-		contentPane.add(pCenter, BorderLayout.CENTER);
+		JPanel pList = new JPanel();
+		contentPane.add(pList, BorderLayout.CENTER);
 	}
 
 }

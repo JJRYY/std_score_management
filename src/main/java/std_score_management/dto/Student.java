@@ -24,6 +24,13 @@ public class Student {
 		this.stdName = stdName;
 	}
 
+	public Student(int stdNo, String stdName, int stdGrade, Ban banCode) {
+		this.stdNo = stdNo;
+		this.stdName = stdName;
+		this.stdGrade = stdGrade;
+		this.banCode = banCode;
+	}
+
 	public Student(int stdNo, String stdName, int stdGrade, Ban banCode, Date enterDate) {
 		this.stdNo = stdNo;
 		this.stdName = stdName;
@@ -74,8 +81,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return String.format("Student [stdNo=%s, stdName=%s, stdGrade=%s, banCode=%s, enterDate=%s]", stdNo, stdName,
-				stdGrade, banCode, enterDate);
+		return String.format("Student [stdNo=%s, stdName=%s, stdGrade=%s, banCode=%s", 
+				stdNo, stdName, stdGrade, banCode);
 	}
 
 }

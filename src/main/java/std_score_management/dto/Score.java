@@ -13,6 +13,12 @@ public class Score {
 		this.stdNo = stdNo;
 	}
 
+	public Score(Student stdNo, Subject subjectCode, int stdScore) {
+		this.stdNo = stdNo;
+		this.subjectCode = subjectCode;
+		this.stdScore = stdScore;
+	}
+
 	public Score(int scoreNo, Student stdNo, Subject subjectCode, int stdScore) {
 		this.scoreNo = scoreNo;
 		this.stdNo = stdNo;
@@ -54,8 +60,8 @@ public class Score {
 
 	@Override
 	public String toString() {
-		return String.format("Score [scoreNo=%s, stdNo=%s, subjectCode=%s, stdScore=%s]", scoreNo, stdNo, subjectCode,
-				stdScore);
+		return String.format("Score [stdNo=%s, subjectCode=%s, stdScore=%s]", 
+				stdNo, subjectCode, stdScore);
 	}
 
 }

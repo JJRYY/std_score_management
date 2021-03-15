@@ -6,7 +6,8 @@ import std_score_management.dto.Score;
 
 public interface ScoreDao {
 	List<Score> selectScoreByAll();
-	Score selectScoreByNo(Score score);
+//	Score selectScoreByNo(Score score);
+	List<Score> selectScoreByNo(Score score);
 	
 	int insertScore(Score score);
 	int updateScore(Score score);

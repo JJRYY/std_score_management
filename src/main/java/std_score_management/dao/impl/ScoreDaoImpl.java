@@ -40,31 +40,52 @@ public class ScoreDaoImpl implements ScoreDao {
 	}
 
 	private Score getScore(ResultSet rs) throws SQLException {
-		int scoreNo = rs.getInt("scoreNo");
+//		int scoreNo = rs.getInt("scoreNo");
 		Student stdNo = new Student(rs.getInt("stdNo"));
 		Subject subjectCode = new Subject(rs.getInt("subjectCode"));
 		int stdScore = rs.getInt("stdScore");
 		
-		return new Score(scoreNo, stdNo, subjectCode, stdScore);
+		return new Score(stdNo, subjectCode, stdScore);
 	}
 
 	@Override
-	public Score selectScoreByNo(Score score) {
-		String sql = "select scoreNo, stdNo, subjectCode, stdScore from score where stdNo = ? and subjectCode = ?";
+	public List<Score> selectScoreByNo(Score score) {
+		String sql = "select stdNo, subjectCode, stdScore from score where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, score.getStdNo().getStdNo());
-			pstmt.setInt(2, score.getSubjectCode().getSubjectCode());
 			try(ResultSet rs = pstmt.executeQuery()){
-				if (rs.next()) {
-					return getScore(rs);
-				}
+			if(rs.next()) {
+				List<Score> list = new ArrayList<>();
+				do {
+					list.add(getScore(rs));
+				} while(rs.next());
+				return list;
+			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+//	@Override
+//	public Score selectScoreByNo(Score score) {
+//		String sql = "select scoreNo, stdNo, subjectCode, stdScore from score where stdNo = ? and subjectCode = ?";
+//		try(Connection con = JdbcUtil.getConnection();
+//				PreparedStatement pstmt = con.prepareStatement(sql)){
+//			pstmt.setInt(1, score.getStdNo().getStdNo());
+//			pstmt.setInt(2, score.getSubjectCode().getSubjectCode());
+//			try(ResultSet rs = pstmt.executeQuery()){
+//				if (rs.next()) {
+//					return getScore(rs);
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	@Override
 	public int insertScore(Score score) {
@@ -72,8 +93,8 @@ public class ScoreDaoImpl implements ScoreDao {
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, score.getStdNo().getStdNo());
-			pstmt.setInt(3, score.getSubjectCode().getSubjectCode());
-			pstmt.setInt(4, score.getStdScore());
+			pstmt.setInt(2, score.getSubjectCode().getSubjectCode());
+			pstmt.setInt(3, score.getStdScore());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,16 +119,17 @@ public class ScoreDaoImpl implements ScoreDao {
 
 	@Override
 	public int deleteScore(Score score) {
-		String sql = "delete from score where stdNo = ? and subjectCode = ?";
+		String sql = "delete from score where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, score.getStdNo().getStdNo());
-			pstmt.setInt(2, score.getSubjectCode().getSubjectCode());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
+
+	
 
 }

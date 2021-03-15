@@ -25,11 +25,11 @@ public class ScoreByBan extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		ScoreByBanTopPanel pNorth = new ScoreByBanTopPanel();
-		contentPane.add(pNorth, BorderLayout.NORTH);
+		ScoreByBanTopPanel pContent = new ScoreByBanTopPanel();
+		contentPane.add(pContent, BorderLayout.NORTH);
 		
-		JPanel pCenter = new JPanel();
-		contentPane.add(pCenter, BorderLayout.CENTER);
+		JPanel pList = new JPanel();
+		contentPane.add(pList, BorderLayout.CENTER);
 	}
 
 }

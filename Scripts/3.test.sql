@@ -18,6 +18,7 @@ update score set stdScore = 85 where stdNo = 20001 and subjectCode = 1;
 
 select * from student;
 select * from score;
+select * from ban;
 
 select s.stdNo, stdName, c.subjectCode, stdScore
 	from student s join score c on s.stdNo = c.stdNo; 
@@ -32,5 +33,20 @@ select s.stdNo, stdName,
 	from student s join score c on s.stdno = c.stdno
 	group by stdName;
 
+insert into student(stdNo, stdName, stdGrade, banCode) values
+(30001, '미포', 3, 'B01');
 
+delete from student 
+	where stdNo = 30001;
+
+delete from score 
+	where stdNo = 20001;
+
+select * from student;
+select * from score;
+
+select stdNo, subjectCode, stdScore from score where stdNo = 20001;
+
+insert into student(stdNo, stdName, stdGrade, banCode) values
+(40001, '김김', 2, 'A01');
 	
