@@ -15,8 +15,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import std_score_management.ui.exception.NotSelectedException;
-
 
 @SuppressWarnings("serial")
 public abstract class AbstractCustomTablePanel<T> extends JPanel {
@@ -29,13 +27,13 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 		
 	}
 	
-	public T getItem() {
+	public abstract T getItem(); /* {
 		int idx = table.getSelectedRow();
 		if (idx == -1) {
 			throw new NotSelectedException();
 		}
 		return list.get(idx);
-	}
+	} */
 	
 	public void loadData() {
 		initList();
