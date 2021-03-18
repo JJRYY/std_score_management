@@ -6,10 +6,9 @@ CREATE SCHEMA std_score;
 
 -- 학생
 CREATE TABLE std_score.student (
-	stdNo    INT(6)     NOT NULL COMMENT '학번', -- 학번
-	stdName  VARCHAR(6) NOT NULL COMMENT '이름', -- 이름
-	stdGrade INT(1)     NOT NULL COMMENT '학년', -- 학년
-	banCode  VARCHAR(3) NOT NULL COMMENT '분반코드' -- 분반코드
+	stdNo   INT(6)     NOT NULL COMMENT '학번', -- 학번
+	stdName VARCHAR(6) NOT NULL COMMENT '이름', -- 이름
+	banCode VARCHAR(3) NOT NULL COMMENT '분반코드' -- 분반코드
 )
 COMMENT '학생';
 

@@ -25,19 +25,19 @@ select s.stdNo, stdName, c.subjectCode, stdScore
 
 -- 학생마다의 점수 피벗테이블
 select s.stdNo, stdName,             
-	sum(if(subjectCode = 1, stdScore, 0)) as '국어',
-	sum(if(subjectCode = 2, stdScore, 0)) as '영어',
-	sum(if(subjectCode = 3, stdScore, 0)) as '수학',
-	sum(if(subjectCode = 4, stdScore, 0)) as '사회',
-	sum(if(subjectCode = 5, stdScore, 0)) as '과학'
+	sum(if(subjectCode = 101, stdScore, 0)) as '국어',
+	sum(if(subjectCode = 201, stdScore, 0)) as '영어',
+	sum(if(subjectCode = 301, stdScore, 0)) as '수학',
+	sum(if(subjectCode = 401, stdScore, 0)) as '사회',
+	sum(if(subjectCode = 501, stdScore, 0)) as '과학'
 	from student s join score c on s.stdno = c.stdno
 	group by stdName;
 
 insert into student(stdNo, stdName, stdGrade, banCode) values
-(30001, '미포', 3, 'B01');
+(30001, '미포', 'B01');
 
 delete from student 
-	where stdNo = 30001;
+	where stdNo = 20001;
 
 delete from score 
 	where stdNo = 20001;
@@ -49,4 +49,6 @@ select stdNo, subjectCode, stdScore from score where stdNo = 20001;
 
 insert into student(stdNo, stdName, stdGrade, banCode) values
 (40001, '김김', 2, 'A01');
+
+delete from subject where subjectCode = 101;
 	

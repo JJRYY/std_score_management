@@ -23,15 +23,15 @@ insert into subject values (501, '과학');
 
 desc student;
 select * from student;
-insert into student values (20001, '박재선', 1, 'A01');
-insert into student values (20002, '한동성', 1, 'A02');
-insert into student values (20003, '정정일', 1, 'A01');
-insert into student values (20004, '정명훈', 2, 'B01');
-insert into student values (20005, '임정만', 2, 'B02');
-insert into student values (20006, '임성준', 2, 'B01');
-insert into student values (20007, '윤석수', 3, 'A01');
-insert into student values (20008, '이준민', 3, 'A02');
-insert into student values (20009, '이강길', 3, 'A01');
+insert into student values (20001, '박재선', 'A01');
+insert into student values (20002, '한동성', 'A02');
+insert into student values (20003, '정정일', 'A01');
+insert into student values (20004, '정명훈', 'B01');
+insert into student values (20005, '임정만', 'B02');
+insert into student values (20006, '임성준', 'B01');
+insert into student values (20007, '윤석수', 'A01');
+insert into student values (20008, '이준민', 'A02');
+insert into student values (20009, '이강길', 'A01');
                                     
 desc score;
 select * from score;
