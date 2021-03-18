@@ -6,42 +6,81 @@ desc ban;
 desc subject;
 desc student;
 desc score;
+desc std_detail;
 
 select * from ban;
-insert into ban values ('A01'), ('A02'), ('B01');
+insert into ban values ('A01');
+insert into ban values ('A02');
+insert into ban values ('B01');
+insert into ban values ('B02');
 
 select * from subject;
-insert into subject values 
-(1, '국어'), (2, '영어'), (3, '수학'), (4, '사회'), (5, '과학');
+insert into subject values (101, '국어');
+insert into subject values (201, '영어');
+insert into subject values (301, '수학');
+insert into subject values (401, '사회');
+insert into subject values (501, '과학');
 
 desc student;
 select * from student;
-insert into student values
-(20001, '박재선', 1, 'A01', 20210302, null, null),
-(20002, '한동성', 1, 'A02', 20210302, null, null),
-(20003, '김재선', 2, 'A01', 20200302, null, null),
-(20004, '이재선', 2, 'A02', 20200302, null, null);
+insert into student values (20001, '박재선', 1, 'A01');
+insert into student values (20002, '한동성', 1, 'A02');
+insert into student values (20003, '정정일', 1, 'A01');
+insert into student values (20004, '정명훈', 2, 'B01');
+insert into student values (20005, '임정만', 2, 'B02');
+insert into student values (20006, '임성준', 2, 'B01');
+insert into student values (20007, '윤석수', 3, 'A01');
+insert into student values (20008, '이준민', 3, 'A02');
+insert into student values (20009, '이강길', 3, 'A01');
                                     
 desc score;
 select * from score;
-insert into score values
-(null, 20001, 1, 80),
-(null, 20001, 2, 81), 
-(null, 20001, 3, 82), 
-(null, 20001, 4, 83), 
-(null, 20001, 5, 84), 
-(null, 20002, 1, 70),
-(null, 20002, 2, 71),
-(null, 20002, 3, 72),
-(null, 20002, 4, 73),
-(null, 20002, 5, 74),
-(null, 20003, 1, 60),
-(null, 20003, 2, 61),
-(null, 20003, 3, 62),
-(null, 20003, 4, 63),
-(null, 20003, 5, 64),
-(null, 20004, 1, 50),
-(null, 20004, 2, 52),
-(null, 20004, 3, 53),
-(null, 20004, 4, 54),
-(null, 20004, 5, 55);
+insert into score values (null, 20001, 101, 80);
+insert into score values (null, 20001, 201, 81); 
+insert into score values (null, 20001, 301, 82); 
+insert into score values (null, 20001, 401, 83); 
+insert into score values (null, 20001, 501, 84); 
+insert into score values (null, 20002, 101, 70);
+insert into score values (null, 20002, 201, 71);
+insert into score values (null, 20002, 301, 72);
+insert into score values (null, 20002, 401, 73);
+insert into score values (null, 20002, 501, 74);
+insert into score values (null, 20003, 101, 60);
+insert into score values (null, 20003, 201, 61);
+insert into score values (null, 20003, 301, 62);
+insert into score values (null, 20003, 401, 63);
+insert into score values (null, 20003, 501, 64);
+insert into score values (null, 20004, 101, 50);
+insert into score values (null, 20004, 201, 52);
+insert into score values (null, 20004, 301, 53);
+insert into score values (null, 20004, 401, 54);
+insert into score values (null, 20004, 501, 55);
+insert into score values (null, 20005, 101, 65);
+insert into score values (null, 20005, 201, 46);
+insert into score values (null, 20005, 301, 34);
+insert into score values (null, 20005, 401, 78);
+insert into score values (null, 20005, 501, 98);
+insert into score values (null, 20006, 101, 56);
+insert into score values (null, 20006, 201, 67);
+insert into score values (null, 20006, 301, 88);
+insert into score values (null, 20006, 401, 75);
+insert into score values (null, 20006, 501, 90);
+insert into score values (null, 20007, 101, 78);
+insert into score values (null, 20007, 201, 89);
+insert into score values (null, 20007, 301, 90);
+insert into score values (null, 20007, 401, 66);
+insert into score values (null, 20007, 501, 50);
+insert into score values (null, 20008, 101, 68);
+insert into score values (null, 20008, 201, 58);
+insert into score values (null, 20008, 301, 89);
+insert into score values (null, 20008, 401, 50);
+insert into score values (null, 20008, 501, 80);
+insert into score values (null, 20009, 101, 46);
+insert into score values (null, 20009, 201, 66);
+insert into score values (null, 20009, 301, 90);
+insert into score values (null, 20009, 401, 80);
+insert into score values (null, 20009, 501, 70);
+                                        
+
+desc std_detail;
+select * from std_detail;
