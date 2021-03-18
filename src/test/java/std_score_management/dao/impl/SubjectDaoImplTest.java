@@ -34,7 +34,7 @@ public class SubjectDaoImplTest {
 	@Test
 	public void test05SelectSubjectByNo() {
 		System.out.printf("%s()%n", "testSelectSubjectByNo");
-		Subject subject = new Subject(3);
+		Subject subject = new Subject(101);
 		Subject searchSubject = dao.selectSubjectByNo(subject);
 		Assert.assertNotNull(searchSubject);
 		System.out.println(searchSubject);
@@ -43,7 +43,7 @@ public class SubjectDaoImplTest {
 	@Test
 	public void test01InsertSubject() {
 		System.out.printf("%s()%n", "testInsertSubject");
-		Subject newSubject = new Subject(6, "기계");
+		Subject newSubject = new Subject(601, "기계");
 		int res = dao.insertSubject(newSubject);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectSubjectByNo(newSubject));
@@ -52,7 +52,7 @@ public class SubjectDaoImplTest {
 	@Test
 	public void test02UpdateSubject() {
 		System.out.printf("%s()%n", "testUpdateSubject");
-		Subject newSubject = new Subject(6, "전자");
+		Subject newSubject = new Subject(601, "전자");
 		int res = dao.updateSubject(newSubject);
 		System.out.println(dao.selectSubjectByNo(newSubject));
 	}
@@ -60,7 +60,7 @@ public class SubjectDaoImplTest {
 	@Test
 	public void test03DeleteSubject() {
 		System.out.printf("%s()%n", "testDeleteSubject");
-		Subject newSubject = new Subject(6);
+		Subject newSubject = new Subject(601);
 		int res = dao.deleteSubject(newSubject);
 		Assert.assertEquals(1, res);
 		dao.selectSubjectByAll().stream().forEach(System.out::println);

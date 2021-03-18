@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import std_score_management.dao.StudentDao;
@@ -22,7 +21,7 @@ public class StudentDaoImpl implements StudentDao {
 	
 	@Override
 	public List<Student> selectStudentByAll() {
-		String sql = "select stdNo, stdName, stdGrade, banCode from student";
+		String sql = "select stdNo, stdName, banCode from student";
 		try (Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -42,16 +41,15 @@ public class StudentDaoImpl implements StudentDao {
 	private Student getStudent(ResultSet rs) throws SQLException {
 		int stdNo = rs.getInt("stdNo");
 		String stdName = rs.getString("stdName");
-		int stdGrade = rs.getInt("stdGrade");
 		Ban ban = new Ban(rs.getString("banCode"));
 //		Date enterDate = rs.getDate("enterDate");
 		
-		return new Student(stdNo, stdName, stdGrade, ban);
+		return new Student(stdNo, stdName, ban);
 	}
 
 	@Override
 	public Student selectStudentByNo(Student student) {
-		String sql = "select stdNo, stdName, stdGrade, banCode from student where stdNo = ?";
+		String sql = "select stdNo, stdName, banCode from student where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, student.getStdNo());
@@ -68,13 +66,12 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public int insertStudent(Student student) {
-		String sql = "insert into student(stdNo, stdName, stdGrade, banCode) values (?, ?, ?, ?)";
+		String sql = "insert into student(stdNo, stdName, banCode) values (?, ?, ?)";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, student.getStdNo());
 			pstmt.setString(2, student.getStdName());
-			pstmt.setInt(3, student.getStdGrade());
-			pstmt.setString(4, student.getBanCode().getBanCode());
+			pstmt.setString(3, student.getBanCode().getBanCode());
 //			pstmt.setTimestamp(5, student.getEnterDate().getTime()); // ?
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -85,14 +82,12 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public int updateStudent(Student student) {
-		String sql = "update student set stdName = ?, stdGrade = ?, banCode = ? where stdNo = ?";
+		String sql = "update student set stdName = ?, banCode = ? where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, student.getStdName());
-			pstmt.setInt(2, student.getStdGrade());
-			pstmt.setString(3, student.getBanCode().getBanCode());
-//			pstmt.setDate(4, student.getEnterDate()); // ?
-			pstmt.setInt(4, student.getStdNo());
+			pstmt.setString(2, student.getBanCode().getBanCode());
+			pstmt.setInt(3, student.getStdNo());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

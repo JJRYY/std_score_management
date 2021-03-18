@@ -42,7 +42,7 @@ public class BanDaoImplTest {
 	@Test
 	public void test01InsertBan() {
 		System.out.printf("%s()%n", "testInsertBan");
-		Ban newBan = new Ban("B02");
+		Ban newBan = new Ban("A03");
 		int res = dao.insertBan(newBan);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectBanByCode(newBan));
@@ -51,7 +51,7 @@ public class BanDaoImplTest {
 	@Test
 	public void test02DeleteBan() {
 		System.out.printf("%s()%n", "testDeleteBan");
-		Ban newBan = new Ban("B02");
+		Ban newBan = new Ban("A03");
 		int res = dao.deleteBan(newBan);
 		Assert.assertEquals(1, res);
 		dao.selectBanByAll().stream().forEach(System.out::println);

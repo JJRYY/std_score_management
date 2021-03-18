@@ -47,8 +47,8 @@ select * from score;
 
 select stdNo, subjectCode, stdScore from score where stdNo = 20001;
 
-insert into student(stdNo, stdName, stdGrade, banCode) values
-(40001, '김김', 2, 'A01');
+insert into student(stdNo, stdName, banCode) values
+(40001, '김김', 'A01');
 
 delete from subject where subjectCode = 101;
 	

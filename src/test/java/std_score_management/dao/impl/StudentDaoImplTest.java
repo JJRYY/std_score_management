@@ -43,7 +43,7 @@ public class StudentDaoImplTest {
 	@Test
 	public void test01InsertStudent() {
 		System.out.printf("%s()%n", "testInsertSubject");
-		Student newStd = new Student(30001, "미포", 3, new Ban("B01"));
+		Student newStd = new Student(30001, "미포", new Ban("B01"));
 		int res = dao.insertStudent(newStd);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectStudentByNo(newStd));
@@ -52,7 +52,7 @@ public class StudentDaoImplTest {
 	@Test
 	public void test02UpdateStudent() {
 		System.out.printf("%s()%n", "testUpdateStudent");
-		Student newStd = new Student(30001, "멍청", 2, new Ban("A01"));
+		Student newStd = new Student(30001, "멍청", new Ban("A01"));
 		int res = dao.updateStudent(newStd);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectStudentByNo(newStd));

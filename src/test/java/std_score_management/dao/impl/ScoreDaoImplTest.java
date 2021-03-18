@@ -45,7 +45,7 @@ private ScoreDao dao = ScoreDaoImpl.getInstance();
 	@Test
 	public void test01InsertScore() {
 		System.out.printf("%s()%n", "testInsertScore");
-		Score newScore = new Score(new Student(40001), new Subject(1), 80);
+		Score newScore = new Score(new Student(40001), new Subject(101), 80);
 		int res = dao.insertScore(newScore);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectScoreByNo(newScore));
@@ -54,7 +54,7 @@ private ScoreDao dao = ScoreDaoImpl.getInstance();
 	@Test
 	public void test02UpdateScore() {
 		System.out.printf("%s()%n", "testUpdateScore");
-		Score newScore = new Score(new Student(40001), new Subject(1), 75);
+		Score newScore = new Score(new Student(40001), new Subject(101), 75);
 		int res = dao.updateScore(newScore);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectScoreByNo(newScore));

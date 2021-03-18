@@ -22,7 +22,7 @@ public class ScoreDaoImpl implements ScoreDao {
 
 	@Override
 	public List<Score> selectScoreByAll() {
-		String sql = "select scoreNo, stdNo, subjectCode, stdScore from score";
+		String sql = "select stdNo, subjectCode, stdScore from score";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
@@ -40,7 +40,6 @@ public class ScoreDaoImpl implements ScoreDao {
 	}
 
 	private Score getScore(ResultSet rs) throws SQLException {
-//		int scoreNo = rs.getInt("scoreNo");
 		Student stdNo = new Student(rs.getInt("stdNo"));
 		Subject subjectCode = new Subject(rs.getInt("subjectCode"));
 		int stdScore = rs.getInt("stdScore");
@@ -68,24 +67,6 @@ public class ScoreDaoImpl implements ScoreDao {
 		}
 		return null;
 	}
-	
-//	@Override
-//	public Score selectScoreByNo(Score score) {
-//		String sql = "select scoreNo, stdNo, subjectCode, stdScore from score where stdNo = ? and subjectCode = ?";
-//		try(Connection con = JdbcUtil.getConnection();
-//				PreparedStatement pstmt = con.prepareStatement(sql)){
-//			pstmt.setInt(1, score.getStdNo().getStdNo());
-//			pstmt.setInt(2, score.getSubjectCode().getSubjectCode());
-//			try(ResultSet rs = pstmt.executeQuery()){
-//				if (rs.next()) {
-//					return getScore(rs);
-//				}
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 
 	@Override
 	public int insertScore(Score score) {

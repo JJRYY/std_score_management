@@ -1,7 +1,6 @@
 package std_score_management.dto;
 
 public class Score {
-	private int scoreNo; // 점수 테이블 순번
 	private Student stdNo;
 	private Subject subjectCode;
 	private int stdScore;
@@ -17,21 +16,6 @@ public class Score {
 		this.stdNo = stdNo;
 		this.subjectCode = subjectCode;
 		this.stdScore = stdScore;
-	}
-
-	public Score(int scoreNo, Student stdNo, Subject subjectCode, int stdScore) {
-		this.scoreNo = scoreNo;
-		this.stdNo = stdNo;
-		this.subjectCode = subjectCode;
-		this.stdScore = stdScore;
-	}
-
-	public int getScoreNo() {
-		return scoreNo;
-	}
-
-	public void setScoreNo(int scoreNo) {
-		this.scoreNo = scoreNo;
 	}
 
 	public Student getStdNo() {
