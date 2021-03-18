@@ -33,7 +33,7 @@ select s.stdNo, stdName,
 	sum(if(subjectCode = 401, stdScore, 0)) as '사회',
 	sum(if(subjectCode = 501, stdScore, 0)) as '과학'
 	from student s join score c on s.stdno = c.stdno
-	group by stdName;
+	group by stdNo;
 
 insert into student(stdNo, stdName, stdGrade, banCode) values
 (30001, '미포', 'B01');
@@ -53,4 +53,8 @@ insert into student(stdNo, stdName, banCode) values
 (40001, '김김', 'A01');
 
 delete from subject where subjectCode = 101;
+
+select stdNo, gender, enterDate, stdPhoto from std_detail;
+
+delete from std_detail where stdNo = 20001;
 	
