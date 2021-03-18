@@ -20,6 +20,8 @@ select * from student;
 select * from score;
 select * from ban;
 
+update ban set banCode = 'A03' where banCode = 'A01';
+
 select s.stdNo, stdName, c.subjectCode, stdScore
 	from student s join score c on s.stdNo = c.stdNo; 
 
