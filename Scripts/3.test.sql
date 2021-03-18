@@ -27,12 +27,12 @@ select s.stdNo, stdName, c.subjectCode, stdScore
 
 -- 학생마다의 점수 피벗테이블
 select s.stdNo, stdName,             
-	sum(if(subjectCode = 101, stdScore, 0)) as '국어',
-	sum(if(subjectCode = 201, stdScore, 0)) as '영어',
-	sum(if(subjectCode = 301, stdScore, 0)) as '수학',
-	sum(if(subjectCode = 401, stdScore, 0)) as '사회',
-	sum(if(subjectCode = 501, stdScore, 0)) as '과학'
-	from student s join score c on s.stdno = c.stdno
+	sum(if(subjectCode = 101, stdScore, 0)) as kor,
+	sum(if(subjectCode = 201, stdScore, 0)) as eng,
+	sum(if(subjectCode = 301, stdScore, 0)) as math,
+	sum(if(subjectCode = 401, stdScore, 0)) as soc,
+	sum(if(subjectCode = 501, stdScore, 0)) as sci
+	from student s join score c on s.stdNo = c.stdNo
 	group by stdNo;
 
 insert into student(stdNo, stdName, stdGrade, banCode) values

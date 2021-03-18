@@ -40,9 +40,14 @@ public class StudentDaoImpl implements StudentDao {
 
 	private Student getStudent(ResultSet rs) throws SQLException {
 		int stdNo = rs.getInt("stdNo");
-		String stdName = rs.getString("stdName");
-		Ban ban = new Ban(rs.getString("banCode"));
-//		Date enterDate = rs.getDate("enterDate");
+		String stdName = null;
+		Ban ban = null;
+		try {
+			stdName = rs.getString("stdName");
+		} catch (SQLException e) {}
+		try {
+			ban = new Ban(rs.getString("banCode"));
+		} catch (SQLException e) {}
 		
 		return new Student(stdNo, stdName, ban);
 	}
@@ -107,5 +112,6 @@ public class StudentDaoImpl implements StudentDao {
 		}
 		return 0;
 	}
+
 
 }
