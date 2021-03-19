@@ -33,8 +33,30 @@ public class Subject {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + subjectCode;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (subjectCode != other.subjectCode)
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return String.format("Subject [subjectCode=%s, subjectName=%s]", subjectCode, subjectName);
+		return String.format("%s(%s)", subjectName, subjectCode);
 	}
 
 }

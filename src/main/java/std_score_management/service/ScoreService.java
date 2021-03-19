@@ -7,7 +7,7 @@ import std_score_management.dao.impl.ScoreDaoImpl;
 import std_score_management.dto.Score;
 
 public class ScoreService {
-private ScoreDao dao = ScoreDaoImpl.getInstance();
+	private ScoreDao dao = ScoreDaoImpl.getInstance();
 	
 	public List<Score> showScores(){
 		return dao.selectScoreByAll();
