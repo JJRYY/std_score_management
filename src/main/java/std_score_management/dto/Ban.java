@@ -19,7 +19,32 @@ public class Ban {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((banCode == null) ? 0 : banCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ban other = (Ban) obj;
+		if (banCode == null) {
+			if (other.banCode != null)
+				return false;
+		} else if (!banCode.equals(other.banCode))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return String.format("Ban [banCode=%s]", banCode);
+		return String.format("%s", banCode);
 	}
 }

@@ -67,13 +67,4 @@ public class StudentDaoImplTest {
 		dao.selectStudentByAll().stream().forEach(System.out::println);
 	}
 
-	@Test
-	public void test06SelectStudentScore() {
-		System.out.printf("%s()%n", "selectStudentScore");
-		List<Student> stdList = dao.selectStudentScore();
-		Assert.assertNotNull(stdList);
-		for (Student s : stdList) {
-			System.out.println(s);
-		}
-	}
 }

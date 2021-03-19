@@ -25,7 +25,4 @@ public class StudentService {
 		stdDao.updateStudent(student);
 	}
 	
-	public List<Student> showStudentScore() {
-		return stdDao.selectStudentScore();
-	}
 }

@@ -26,7 +26,7 @@ select s.stdNo, stdName, c.subjectCode, stdScore
 	from student s join score c on s.stdNo = c.stdNo; 
 
 -- 학생마다의 점수 피벗테이블
-select s.stdNo, stdName,             
+select s.stdNo, stdName, banCode,  
 	sum(if(subjectCode = 101, stdScore, 0)) as kor,
 	sum(if(subjectCode = 201, stdScore, 0)) as eng,
 	sum(if(subjectCode = 301, stdScore, 0)) as math,
@@ -58,3 +58,10 @@ select stdNo, gender, enterDate, stdPhoto from std_detail;
 
 delete from std_detail where stdNo = 20001;
 	
+-- 상위 몇개만 가져오기
+select * from vw_student_score;
+-- 과목점수 상위 5개만 가져오기
+select stdNo, stdName, banCode, kor, eng, math, soc, sci 
+	from vw_student_score
+	order by sci desc limit 5;
+

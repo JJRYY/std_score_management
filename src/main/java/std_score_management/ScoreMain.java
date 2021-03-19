@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import std_score_management.service.StudentScoreAllService;
 import std_score_management.ui.ScoreAll;
 import std_score_management.ui.ScoreByBan;
 import std_score_management.ui.ScoreManager;
@@ -14,6 +15,7 @@ import std_score_management.ui.ScoreManager;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import std_score_management.ui.list.StudentScoreTablePanel;
 
 @SuppressWarnings("serial")
 public class ScoreMain extends JFrame implements ActionListener {
@@ -22,6 +24,8 @@ public class ScoreMain extends JFrame implements ActionListener {
 	private JButton btnStdScore;
 	private JButton btnScoreByBan;
 	private JButton btnScoreAll;
+	private StudentScoreAllService service;
+	private StudentScoreTablePanel pStdList;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,7 +41,9 @@ public class ScoreMain extends JFrame implements ActionListener {
 	}
 
 	public ScoreMain() {
+		service = new StudentScoreAllService();
 		initialize();
+		
 	}
 	private void initialize() {
 		setTitle("학생 성적 관리");
@@ -66,7 +72,9 @@ public class ScoreMain extends JFrame implements ActionListener {
 		btnScoreAll.addActionListener(this);
 		pBtn.add(btnScoreAll);
 		
-		JPanel pStdList = new JPanel();
+		pStdList = new StudentScoreTablePanel();
+		pStdList.setService(service);
+		pStdList.loadData();
 		contentPane.add(pStdList, BorderLayout.CENTER);
 	}
 
