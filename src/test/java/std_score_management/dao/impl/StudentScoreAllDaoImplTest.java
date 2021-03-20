@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 import std_score_management.dao.StudentScoreAllDao;
 import std_score_management.dto.Student;
 import std_score_management.dto.StudentScoreAll;
+import std_score_management.dto.Subject;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentScoreAllDaoImplTest {
@@ -39,4 +40,26 @@ public class StudentScoreAllDaoImplTest {
 		System.out.println(stdScoreAll);
 	}
 
+	@Test
+	public void test03SelectStudentScoreTopByAvg() {
+		System.out.printf("%s()%n", "testSelectStudentScoreTopByAvg");
+		int cnt = 5;
+		List<StudentScoreAll> stdList = dao.selectStudentScoreTopByAvg(cnt);
+		Assert.assertNotNull(stdList);
+		for (StudentScoreAll s : stdList) {
+			System.out.println(s);
+		}
+	}
+	
+	@Test
+	public void test04SelectStudentScoreTopBySubject() {
+		System.out.printf("%s()%n", "testSelectStudentScoreTopBySubject");
+		Subject subject = new Subject(301, "soc");
+		int cnt = 5;
+		List<StudentScoreAll> stdList = dao.selectStudentScoreTopBySubject(subject, cnt);
+		Assert.assertNotNull(stdList);
+		for (StudentScoreAll s : stdList) {
+			System.out.println(s);
+		}
+	}
 }

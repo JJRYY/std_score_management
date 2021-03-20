@@ -11,6 +11,10 @@ public class Subject {
 		this.subjectCode = subjectCode;
 	}
 
+	public Subject(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
 	public Subject(int subjectCode, String subjectName) {
 		this.subjectCode = subjectCode;
 		this.subjectName = subjectName;

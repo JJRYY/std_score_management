@@ -19,6 +19,7 @@ update score set stdScore = 85 where stdNo = 20001 and subjectCode = 1;
 select * from student;
 select * from score;
 select * from ban;
+select * from subject;
 
 update ban set banCode = 'A03' where banCode = 'A01';
 
@@ -78,19 +79,22 @@ insert into score values (null, 40001, 201, 70);
 -- 상위 몇개만 가져오기
 select * from vw_student_score;
 
-select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
 	from vw_student_score
 	order by avgScore desc limit 5;
 
 -- 과목점수 상위 5개만 가져오기
-select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
 	from vw_student_score
-	order by 국어 desc limit 5;
+	order by kor desc limit 5;
 
-select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
 	from vw_student_score
-	order by 사회 desc limit 5;
+	order by soc desc limit 5;
 
+select stdNo, stdName, banCode, kor as '101', eng, math, soc, sci, sumScore, avgScore
+	from vw_student_score
+	order by `101` desc limit 5;
 
 
 select s.stdNo, stdName, banCode,  

@@ -30,7 +30,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 	
 	@Override
 	public List<StudentScoreAll> selectStudentScoreAll() {
-		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학 from vw_student_score";
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci from vw_student_score";
 		try (Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -51,18 +51,18 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 		Student stdNo = new Student(rs.getInt("stdNo"));
 		String stdName = rs.getString("stdName");
 		Ban banCode = new Ban(rs.getString("banCode"));
-		int kor = rs.getInt("국어");
-		int eng = rs.getInt("영어");
-		int math = rs.getInt("수학");
-		int soc = rs.getInt("사회");
-		int sci = rs.getInt("과학");
+		int kor = rs.getInt("kor");
+		int eng = rs.getInt("eng");
+		int math = rs.getInt("math");
+		int soc = rs.getInt("soc");
+		int sci = rs.getInt("sci");
 		
 		return new StudentScoreAll(stdNo, stdName, banCode, kor, eng, math, soc, sci);
 	}
 
 	@Override
 	public StudentScoreAll selectStudentScoreByNo(Student student) {
-		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학"
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci"
 				+ " from vw_student_score"
 				+ " where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
@@ -81,7 +81,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 
 	@Override
 	public List<StudentScoreAll> selectStudentScoreTopByAvg(int cnt) {
-		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학" + 
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci" + 
 				"	from vw_student_score" + 
 				"	order by avgScore desc limit ?";
 		try(Connection con = JdbcUtil.getConnection();
@@ -104,12 +104,13 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 
 	@Override
 	public List<StudentScoreAll> selectStudentScoreTopBySubject(Subject subject, int cnt) {
-		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학" + 
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci" + 
 				"	from vw_student_score" + 
-				"	order by ? desc limit ?";
+				"	order by %?"
+				+ " desc limit ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setString(1, subject.getSubjectName());
+			pstmt.setString(1, subject.getSubjectName() + "%");
 			pstmt.setInt(2, cnt);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if (rs.next()) {
@@ -125,7 +126,5 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 		}
 		return null;
 	}
-
-	
 
 }
