@@ -59,20 +59,50 @@ select stdNo, gender, enterDate, stdPhoto from std_detail;
 delete from std_detail where stdNo = 20001;
 	
 select s.stdNo, stdName, banCode,  
-	sum(if(subjectCode = 101, stdScore, 0)) as kor,
-	sum(if(subjectCode = 201, stdScore, 0)) as eng,
-	sum(if(subjectCode = 301, stdScore, 0)) as math,
-	sum(if(subjectCode = 401, stdScore, 0)) as soc,
-	sum(if(subjectCode = 501, stdScore, 0)) as sci,
-	sum(stdScore) as '총점',
-	avg(stdScore) as '평균'
+	sum(if(subjectCode = 101, stdScore, 0)) as 'kor',
+	sum(if(subjectCode = 201, stdScore, 0)) as 'eng',
+	sum(if(subjectCode = 301, stdScore, 0)) as 'math',
+	sum(if(subjectCode = 401, stdScore, 0)) as 'soc',
+	sum(if(subjectCode = 501, stdScore, 0)) as 'sci',
+	sum(stdScore) as 'SumScore',
+	avg(stdScore) as 'avgScore'
 	from student s join score c on s.stdNo = c.stdNo
 	group by stdNo;
 
+select * from student;
+select * from score; 
+
+insert into score values (null, 40001, 101, 80);
+insert into score values (null, 40001, 201, 70);
+
 -- 상위 몇개만 가져오기
 select * from vw_student_score;
--- 과목점수 상위 5개만 가져오기
-select stdNo, stdName, banCode, kor, eng, math, soc, sci 
-	from vw_student_score
-	order by sci desc limit 5;
 
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	order by avgScore desc limit 5;
+
+-- 과목점수 상위 5개만 가져오기
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	order by 국어 desc limit 5;
+
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	order by 사회 desc limit 5;
+
+
+
+select s.stdNo, stdName, banCode,  
+	sum(if(subjectCode = 101, stdScore, 0)) as '국어',
+	sum(if(subjectCode = 201, stdScore, 0)) as '영어',
+	sum(if(subjectCode = 301, stdScore, 0)) as '수학',
+	sum(if(subjectCode = 401, stdScore, 0)) as '사회',
+	sum(if(subjectCode = 501, stdScore, 0)) as '과학',
+	sum(stdScore) as 'sumScore',
+	avg(stdScore) as 'avgScore'
+	from student s join score c on s.stdNo = c.stdNo
+	group by stdNo
+	order by 과학 desc limit 5;
+
+select * from subject;

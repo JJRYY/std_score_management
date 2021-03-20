@@ -130,7 +130,7 @@ public class StudentScoreAll {
 	@Override
 	public String toString() {
 		return String.format(
-				"StudentScoreAll [stdNo=%s, stdName=%s, banCode=%s, kor=%s, eng=%s, math=%s, soc=%s, sci=%s]", stdNo,
+				"stdNo=%s, stdName=%s, banCode=%s, kor=%s, eng=%s, math=%s, soc=%s, sci=%s", stdNo,
 				stdName, banCode, kor, eng, math, soc, sci);
 	}
 	

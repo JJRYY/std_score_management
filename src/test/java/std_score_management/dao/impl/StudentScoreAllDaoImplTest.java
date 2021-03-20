@@ -22,7 +22,7 @@ public class StudentScoreAllDaoImplTest {
 	}
 
 	@Test
-	public void testSelectStudentScoreAll() {
+	public void test01SelectStudentScoreAll() {
 		System.out.printf("%s()%n", "testSelectStudentScoreAll");
 		List<StudentScoreAll> stdList = dao.selectStudentScoreAll();
 		Assert.assertNotNull(stdList);
@@ -32,7 +32,7 @@ public class StudentScoreAllDaoImplTest {
 	}
 
 	@Test
-	public void testSelectStudentScoreByNo() {
+	public void test02SelectStudentScoreByNo() {
 		System.out.printf("%s()%n", "testSelectStudentByNo");
 		StudentScoreAll stdScoreAll = dao.selectStudentScoreByNo(new Student(20001));
 		Assert.assertNotNull(stdScoreAll);
