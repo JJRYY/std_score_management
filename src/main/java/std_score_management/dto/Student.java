@@ -71,7 +71,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return String.format("Student [stdNo=%s, stdName=%s, banCode=%s]", stdNo, stdName, banCode);
+		return String.format("stdNo=%s, stdName=%s, banCode=%s", stdNo, stdName, banCode);
 	}
 
 
