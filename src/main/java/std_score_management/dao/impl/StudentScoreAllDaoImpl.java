@@ -30,7 +30,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 	
 	@Override
 	public List<StudentScoreAll> selectStudentScoreAll() {
-		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci from vw_student_score";
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore from vw_student_score";
 		try (Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -56,13 +56,15 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 		int math = rs.getInt("math");
 		int soc = rs.getInt("soc");
 		int sci = rs.getInt("sci");
+		int sum = rs.getInt("sumScore");
+		double avg = rs.getDouble("avgScore");
 		
-		return new StudentScoreAll(stdNo, stdName, banCode, kor, eng, math, soc, sci);
+		return new StudentScoreAll(stdNo, stdName, banCode, kor, eng, math, soc, sci, sum, avg);
 	}
 
 	@Override
 	public StudentScoreAll selectStudentScoreByNo(Student student) {
-		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci"
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore"
 				+ " from vw_student_score"
 				+ " where stdNo = ?";
 		try(Connection con = JdbcUtil.getConnection();
@@ -81,7 +83,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 
 	@Override
 	public List<StudentScoreAll> selectStudentScoreTopByAvg(int cnt) {
-		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci" + 
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore" + 
 				"	from vw_student_score" + 
 				"	order by avgScore desc limit ?";
 		try(Connection con = JdbcUtil.getConnection();
@@ -104,13 +106,13 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 
 	@Override
 	public List<StudentScoreAll> selectStudentScoreTopBySubject(Subject subject, int cnt) {
-		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci" + 
+		String sql = "select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore" + 
 				"	from vw_student_score" + 
-				"	order by %?"
+				"	order by ?"
 				+ " desc limit ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setString(1, subject.getSubjectName() + "%");
+			pstmt.setString(1, subject.getSubjectName());
 			pstmt.setInt(2, cnt);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if (rs.next()) {

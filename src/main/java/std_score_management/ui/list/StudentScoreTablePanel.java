@@ -1,5 +1,7 @@
 package std_score_management.ui.list;
 
+import java.util.List;
+
 import javax.swing.SwingConstants;
 
 import std_score_management.dto.Student;
@@ -14,6 +16,10 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 	@Override
 	public void initList() {
 		list = service.showStudentScore();
+	}
+	
+	public void setInitList(List<StudentScoreAll> std) {
+		list = std;
 	}
 
 	public void setService(StudentScoreAllService service) {
@@ -42,8 +48,8 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 								t.getMath(),
 								t.getSoc(),
 								t.getSci(),
-								t.getKor()+t.getEng()+t.getMath()+t.getSoc()+t.getSci(),
-								(t.getKor()+t.getEng()+t.getMath()+t.getSoc()+t.getSci()) / 5.0f
+								t.getSum(),
+								t.getAvg()
 							};
 	}
 

@@ -10,6 +10,8 @@ public class StudentScoreAll {
 	private int math;
 	private int soc;
 	private int sci;
+	private int sum;
+	private double avg;
 	
 	public StudentScoreAll() {
 	}
@@ -36,6 +38,20 @@ public class StudentScoreAll {
 		this.math = math;
 		this.soc = soc;
 		this.sci = sci;
+	}
+
+	public StudentScoreAll(Student stdNo, String stdName, Ban banCode, int kor, int eng, int math, int soc, int sci,
+			int sum, double avg) {
+		this.stdNo = stdNo;
+		this.stdName = stdName;
+		this.banCode = banCode;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+		this.soc = soc;
+		this.sci = sci;
+		this.sum = sum;
+		this.avg = avg;
 	}
 
 	public Student getStdNo() {
@@ -102,6 +118,22 @@ public class StudentScoreAll {
 		this.sci = sci;
 	}
 
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+
+	public double getAvg() {
+		return avg;
+	}
+
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,9 +162,10 @@ public class StudentScoreAll {
 	@Override
 	public String toString() {
 		return String.format(
-				"stdNo=%s, stdName=%s, banCode=%s, kor=%s, eng=%s, math=%s, soc=%s, sci=%s", stdNo,
-				stdName, banCode, kor, eng, math, soc, sci);
+				"stdNo=%s, stdName=%s, banCode=%s, kor=%s, eng=%s, math=%s, soc=%s, sci=%s, sum=%s, avg=%s",
+				stdNo, stdName, banCode, kor, eng, math, soc, sci, sum, avg);
 	}
+
 	
 	
 	

@@ -1,26 +1,43 @@
 package std_score_management.ui.content;
 
-import javax.swing.JPanel;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import std_score_management.dto.Subject;
+import std_score_management.service.StudentScoreAllService;
+import std_score_management.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
 public class ScoreAllTopPanel extends JPanel {
 	private JTextField tfStdCnt;
+	private JComboBox<Subject> cmbSubject;
+	private StudentScoreAllService service;
 
 	public ScoreAllTopPanel() {
 
 		initialize();
 	}
-	private void initialize() {
-		setLayout(new GridLayout(0, 6, 10, 0));
+	
+	public void setService(StudentScoreAllService service) {
+		this.service = service;
 		
-		JPanel pSpace = new JPanel();
-		add(pSpace);
+		List<Subject> subjectList = service.showSubjectList();
+		DefaultComboBoxModel<Subject> subjectModel = new DefaultComboBoxModel<>(new Vector(subjectList));
+		cmbSubject.setModel(subjectModel);
+		
+		cmbSubject.setSelectedIndex(-1);
+	}
+	
+	private void initialize() {
+		setLayout(new GridLayout(0, 4, 10, 0));
 		
 		JLabel lblStdCnt = new JLabel("인원 수");
 		lblStdCnt.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -34,11 +51,29 @@ public class ScoreAllTopPanel extends JPanel {
 		lblSubject.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblSubject);
 		
-		JComboBox cmbSubject = new JComboBox();
+		cmbSubject = new JComboBox<>();
 		add(cmbSubject);
-		
-		JButton btnSelect = new JButton("조회");
-		add(btnSelect);
 	}
 
+	public Subject getSubject() {
+		validCheck();
+		Subject subject = (Subject) cmbSubject.getSelectedItem();
+		
+		return new Subject(subject.getSubjectCode(), subject.getSubjectName());
+	}
+	
+
+	public int getCnt() {
+		validCheck();
+		int cnt = Integer.parseInt(tfStdCnt.getText().trim());
+		
+		return cnt;
+	}
+	
+	private void validCheck() {
+		if (tfStdCnt.getText().equals("")||cmbSubject.getSelectedIndex() == -1) {
+			throw new InvalidCheckException();
+		}
+		
+	}
 }

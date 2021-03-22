@@ -1,19 +1,38 @@
 package std_score_management.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import std_score_management.dto.StudentScoreAll;
+import std_score_management.dto.Subject;
+import std_score_management.service.StudentScoreAllService;
 import std_score_management.ui.content.ScoreAllTopPanel;
+import std_score_management.ui.list.StudentScoreTablePanel;
 
 @SuppressWarnings("serial")
-public class ScoreAll extends JFrame {
+public class ScoreAll extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private StudentScoreTablePanel pList;
+	private StudentScoreAllService service;
+	private JPanel pNorth;
+	private ScoreAllTopPanel pContent;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel pBtn;
+	private JButton btnSel;
+	private JButton btnCancel;
 
 	public ScoreAll() {
+		service = new StudentScoreAllService();
 		initialize();
 	}
 	private void initialize() {
@@ -25,11 +44,54 @@ public class ScoreAll extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		ScoreAllTopPanel pContent = new ScoreAllTopPanel();
-		contentPane.add(pContent, BorderLayout.NORTH);
-		
-		JPanel pList = new JPanel();
+		pList = new StudentScoreTablePanel();
+		pList.setService(service);
+		pList.loadData();
 		contentPane.add(pList, BorderLayout.CENTER);
+		
+		pNorth = new JPanel();
+		contentPane.add(pNorth, BorderLayout.NORTH);
+		pNorth.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		pContent = new ScoreAllTopPanel();
+		pContent.setService(service);
+		pNorth.add(pContent);
+		
+		panel_2 = new JPanel();
+		pNorth.add(panel_2);
+		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		panel_3 = new JPanel();
+		panel_2.add(panel_3);
+		
+		pBtn = new JPanel();
+		panel_2.add(pBtn);
+		pBtn.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		btnSel = new JButton("조회");
+		btnSel.addActionListener(this);
+		pBtn.add(btnSel);
+		
+		btnCancel = new JButton("취소");
+		pBtn.add(btnCancel);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSel) {
+			actionPerformedBtnSel(e);
+		}
+	}
+	
+	protected void actionPerformedBtnSel(ActionEvent e) {
+		Subject subject = pContent.getSubject();
+		int cnt = pContent.getCnt();
+//		System.out.printf("subject = %s(%d), cnt = %d%n", subject.getSubjectName(), subject.getSubjectCode(), cnt);
+		List<StudentScoreAll> stdList = service.showStudentScoreTopByAvg(cnt);
+		((StudentScoreTablePanel)pList).setInitList(stdList);
+//		for (StudentScoreAll s : stdList) {
+//			System.out.println(s);
+//		}
+		pList.setList();
+		
+	}
 }
