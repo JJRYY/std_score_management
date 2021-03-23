@@ -100,7 +100,7 @@ select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore
 
 select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
 	from vw_student_score
-	order by 사회 desc limit 5;
+	order by 사회 desc limit 13;
 
 
 

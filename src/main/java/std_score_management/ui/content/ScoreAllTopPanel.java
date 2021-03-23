@@ -73,16 +73,25 @@ public class ScoreAllTopPanel extends JPanel {
 
 	public Subject getSubject() {
 //		validCheck();
-		Subject subject = (Subject) cmbSubject.getSelectedItem();
-		
-		return new Subject(subject.getSubjectCode(), subject.getSubjectName());
+		Subject subject = null;
+		int subjectCode = 0;
+		String subjectName = null;
+		if(cmbSubject.getSelectedIndex() != -1) {
+			subject = (Subject) cmbSubject.getSelectedItem();
+			subjectCode = subject.getSubjectCode();
+			subjectName = subject.getSubjectName();
+		}
+		return new Subject(subjectCode, subjectName);
+//		return new Subject(subject.getSubjectCode(), subject.getSubjectName());
 	}
 	
 
 	public int getCnt() {
 //		validCheck();
-		int cnt = Integer.parseInt(tfStdCnt.getText().trim());
-		
+		int cnt = 0;
+		if (!tfStdCnt.getText().equals("")) {
+			cnt = Integer.parseInt(tfStdCnt.getText().trim());
+		} 
 		return cnt;
 	}
 	
@@ -90,6 +99,10 @@ public class ScoreAllTopPanel extends JPanel {
 		if (tfStdCnt.getText().equals("")||cmbSubject.getSelectedIndex() == -1) {
 			throw new InvalidCheckException();
 		}
-		
+	}
+	
+	public void clearTf() {
+		tfStdCnt.setText("");
+		cmbSubject.setSelectedIndex(-1);
 	}
 }

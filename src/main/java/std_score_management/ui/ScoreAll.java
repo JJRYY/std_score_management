@@ -41,7 +41,7 @@ public class ScoreAll extends JFrame implements ActionListener {
 		setBounds(150, 150, 750, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(0, 10));
 		setContentPane(contentPane);
 		
 		pList = new StudentScoreTablePanel();
@@ -73,39 +73,44 @@ public class ScoreAll extends JFrame implements ActionListener {
 		pBtn.add(btnSel);
 		
 		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
 		if (e.getSource() == btnSel) {
 			actionPerformedBtnSel(e);
 		}
 	}
 	
 	protected void actionPerformedBtnSel(ActionEvent e) {
-//		Subject subject = pContent.getSubject();
-//		int cnt = pContent.getCnt();
-//		List<StudentScoreAll> stdList = service.showStudentScoreTopByAvg(cnt);
-//		pList.setInitList(stdList);
-//		pList.setList();
 		
 		String subject = pContent.getSubject().getSubjectName();
-		int cnt = Integer.parseInt(pContent.getTfStdCnt().getText().trim());
+		int cnt = pContent.getCnt();
 		
-		if (((pContent.getTfStdCnt() != null)||(Integer.parseInt(pContent.getTfStdCnt().getText().trim()) == 0)) && pContent.getSubject() != null) {
+		if(cnt != 0 && subject != null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreTopBySubject(subject, cnt);
 			pList.setInitList(stdList);
-		} else if (pContent.getSubject() != null && pContent.getTfStdCnt().equals(null)) {
+		} else if (cnt == 0 && subject != null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreOrderBySubject(subject);
 			pList.setInitList(stdList);
-		}
+		} else if (cnt != 0 && subject == null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreTopByAvg(cnt);
+			pList.setInitList(stdList);
+		} else if (cnt == 0 && subject == null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreOrderByAvg();
+			pList.setInitList(stdList);
+		} 
 		
-//		if ((pContent.getTfStdCnt().getText() == "" || cnt == 0) && pContent.getCmbSubject().getSelectedIndex() == -1) {
-//			List<StudentScoreAll> stdList = service.showStudentScoreOrderByAvg();
-//			pList.setInitList(stdList);
-//		}
-//		List<StudentScoreAll> stdList = service.showStudentScoreTopBySubject(subject, cnt);
 		pList.setList();
 		
+	}
+	protected void actionPerformedBtnCancel(ActionEvent e) {
+		pContent.clearTf();
+		pList.initList();
+		pList.loadData();
 	}
 }
