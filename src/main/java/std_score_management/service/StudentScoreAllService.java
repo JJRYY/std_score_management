@@ -22,8 +22,20 @@ public class StudentScoreAllService {
 		return stdScoreAllDao.selectStudentScoreAll();
 	}
 	
+	public List<StudentScoreAll> showStudentScoreOrderByAvg(){
+		return stdScoreAllDao.selectStudentScoreOrderByAvg();
+	}
+	
 	public List<StudentScoreAll> showStudentScoreTopByAvg(int cnt){
 		return stdScoreAllDao.selectStudentScoreTopByAvg(cnt);
+	}
+	
+	public List<StudentScoreAll> showStudentScoreOrderBySubject(String s){
+		return stdScoreAllDao.selectStudentScoreOrderBySubject(s);
+	}
+	
+	public List<StudentScoreAll> showStudentScoreTopBySubject(String s, int cnt){
+		return stdScoreAllDao.selectStudentScoreTopBySubject(s, cnt);
 	}
 	
 	public List<Subject> showSubjectList(){

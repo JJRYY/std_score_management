@@ -11,7 +11,6 @@ import org.junit.runners.MethodSorters;
 import std_score_management.dao.StudentScoreAllDao;
 import std_score_management.dto.Student;
 import std_score_management.dto.StudentScoreAll;
-import std_score_management.dto.Subject;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentScoreAllDaoImplTest {
@@ -41,7 +40,17 @@ public class StudentScoreAllDaoImplTest {
 	}
 
 	@Test
-	public void test03SelectStudentScoreTopByAvg() {
+	public void test03SelectStudentScoreOrderByAvg() {
+		System.out.printf("%s()%n", "testSelectStudentScoreOrderByAvg");
+		List<StudentScoreAll> stdList = dao.selectStudentScoreOrderByAvg();
+		Assert.assertNotNull(stdList);
+		for (StudentScoreAll s : stdList) {
+			System.out.println(s);
+		}
+	}
+	
+	@Test
+	public void test04SelectStudentScoreTopByAvg() {
 		System.out.printf("%s()%n", "testSelectStudentScoreTopByAvg");
 		int cnt = 5;
 		List<StudentScoreAll> stdList = dao.selectStudentScoreTopByAvg(cnt);
@@ -52,9 +61,20 @@ public class StudentScoreAllDaoImplTest {
 	}
 	
 	@Test
-	public void test04SelectStudentScoreTopBySubject() {
+	public void test05SelectStudentScoreOrderBySubject() {
+		System.out.printf("%s()%n", "testSelectStudentScoreOrderBySubject");
+		String subject = "사회";
+		List<StudentScoreAll> stdList = dao.selectStudentScoreOrderBySubject(subject);
+		Assert.assertNotNull(stdList);
+		for (StudentScoreAll s : stdList) {
+			System.out.println(s);
+		}
+	}
+	
+	@Test
+	public void test06SelectStudentScoreTopBySubject() {
 		System.out.printf("%s()%n", "testSelectStudentScoreTopBySubject");
-		Subject subject = new Subject(301, "soc");
+		String subject = "사회";
 		int cnt = 5;
 		List<StudentScoreAll> stdList = dao.selectStudentScoreTopBySubject(subject, cnt);
 		Assert.assertNotNull(stdList);

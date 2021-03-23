@@ -76,25 +76,32 @@ select * from score;
 insert into score values (null, 40001, 101, 80);
 insert into score values (null, 40001, 201, 70);
 
--- 상위 몇개만 가져오기
 select * from vw_student_score;
 
-select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
+-- 평균 내림차순 정렬
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	order by avgScore desc;
+
+-- 상위 몇개만 가져오기
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
 	from vw_student_score
 	order by avgScore desc limit 5;
 
+-- 과목 점수 내림차순 정렬
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	order by 영어 desc; 
+
 -- 과목점수 상위 5개만 가져오기
-select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
 	from vw_student_score
-	order by kor desc limit 5;
+	order by 국어 desc limit 5;
 
-select stdNo, stdName, banCode, kor, eng, math, soc, sci, sumScore, avgScore
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
 	from vw_student_score
-	order by soc desc limit 5;
+	order by 사회 desc limit 5;
 
-select stdNo, stdName, banCode, kor as '101', eng, math, soc, sci, sumScore, avgScore
-	from vw_student_score
-	order by `101` desc limit 5;
 
 
 select s.stdNo, stdName, banCode,  

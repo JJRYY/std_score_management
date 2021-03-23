@@ -4,14 +4,17 @@ import java.util.List;
 
 import std_score_management.dto.Student;
 import std_score_management.dto.StudentScoreAll;
-import std_score_management.dto.Subject;
 
 public interface StudentScoreAllDao {
 	List<StudentScoreAll> selectStudentScoreAll();
 	
 	StudentScoreAll selectStudentScoreByNo(Student student);
 	
+	List<StudentScoreAll> selectStudentScoreOrderByAvg();
+	
 	List<StudentScoreAll> selectStudentScoreTopByAvg(int cnt);
 	
-	List<StudentScoreAll> selectStudentScoreTopBySubject(Subject subject, int cnt);
+	List<StudentScoreAll> selectStudentScoreOrderBySubject(String s);
+	
+	List<StudentScoreAll> selectStudentScoreTopBySubject(String s, int cnt);
 }	

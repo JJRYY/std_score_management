@@ -20,6 +20,22 @@ public class ScoreAllTopPanel extends JPanel {
 	private JTextField tfStdCnt;
 	private JComboBox<Subject> cmbSubject;
 	private StudentScoreAllService service;
+	
+	public JTextField getTfStdCnt() {
+		return tfStdCnt;
+	}
+
+	public void setTfStdCnt(JTextField tfStdCnt) {
+		this.tfStdCnt = tfStdCnt;
+	}
+
+	public JComboBox<Subject> getCmbSubject() {
+		return cmbSubject;
+	}
+
+	public void setCmbSubject(JComboBox<Subject> cmbSubject) {
+		this.cmbSubject = cmbSubject;
+	}
 
 	public ScoreAllTopPanel() {
 
@@ -56,7 +72,7 @@ public class ScoreAllTopPanel extends JPanel {
 	}
 
 	public Subject getSubject() {
-		validCheck();
+//		validCheck();
 		Subject subject = (Subject) cmbSubject.getSelectedItem();
 		
 		return new Subject(subject.getSubjectCode(), subject.getSubjectName());
@@ -64,7 +80,7 @@ public class ScoreAllTopPanel extends JPanel {
 	
 
 	public int getCnt() {
-		validCheck();
+//		validCheck();
 		int cnt = Integer.parseInt(tfStdCnt.getText().trim());
 		
 		return cnt;

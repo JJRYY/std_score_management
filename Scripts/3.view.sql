@@ -3,11 +3,11 @@ select user(), database();
 create or replace view vw_student_score
 as
 select s.stdNo, stdName, banCode,  
-	sum(if(subjectCode = 101, stdScore, 0)) as 'kor',
-	sum(if(subjectCode = 201, stdScore, 0)) as 'eng',
-	sum(if(subjectCode = 301, stdScore, 0)) as 'math',
-	sum(if(subjectCode = 401, stdScore, 0)) as 'soc',
-	sum(if(subjectCode = 501, stdScore, 0)) as 'sci',
+	sum(if(subjectCode = 101, stdScore, 0)) as '국어',
+	sum(if(subjectCode = 201, stdScore, 0)) as '영어',
+	sum(if(subjectCode = 301, stdScore, 0)) as '수학',
+	sum(if(subjectCode = 401, stdScore, 0)) as '사회',
+	sum(if(subjectCode = 501, stdScore, 0)) as '과학',
 	sum(stdScore) as 'sumScore',
 	avg(stdScore) as 'avgScore'
 	from student s join score c on s.stdNo = c.stdNo
