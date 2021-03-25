@@ -2,10 +2,13 @@ package std_score_management.service;
 
 import java.util.List;
 
+import std_score_management.dao.BanDao;
 import std_score_management.dao.StudentScoreAllDao;
 import std_score_management.dao.SubjectDao;
+import std_score_management.dao.impl.BanDaoImpl;
 import std_score_management.dao.impl.StudentScoreAllDaoImpl;
 import std_score_management.dao.impl.SubjectDaoImpl;
+import std_score_management.dto.Ban;
 import std_score_management.dto.Student;
 import std_score_management.dto.StudentScoreAll;
 import std_score_management.dto.Subject;
@@ -13,6 +16,7 @@ import std_score_management.dto.Subject;
 public class StudentScoreAllService {
 	private StudentScoreAllDao stdScoreAllDao = StudentScoreAllDaoImpl.getInstance();
 	private SubjectDao subjectDao = SubjectDaoImpl.getInstance();
+	private BanDao banDao = BanDaoImpl.getInstance();
 	
 	public StudentScoreAll selectStudentScoreByStdNo(Student student) {
 		return stdScoreAllDao.selectStudentScoreByNo(student);
@@ -40,5 +44,9 @@ public class StudentScoreAllService {
 	
 	public List<Subject> showSubjectList(){
 		return subjectDao.selectSubjectByAll();
+	}
+	
+	public List<Ban> showBanList(){
+		return banDao.selectBanByAll();
 	}
 }

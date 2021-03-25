@@ -91,7 +91,7 @@ select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore
 -- 과목 점수 내림차순 정렬
 select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
 	from vw_student_score
-	order by 영어 desc; 
+	order by 수학 desc, avgScore desc limit 5; 
 
 -- 과목점수 상위 5개만 가져오기
 select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
@@ -117,3 +117,16 @@ select s.stdNo, stdName, banCode,
 	order by 과학 desc limit 5;
 
 select * from subject;
+
+
+-- 반 별 조회 (평균 내림차순)
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	where banCode='A01'
+	order by avgScore desc; 
+	
+-- 반 별 조회(과목점수 내림차순)
+select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore
+	from vw_student_score
+	where banCode='B01'
+	order by 국어 desc, avgScore desc; 

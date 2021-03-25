@@ -108,7 +108,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore" + 
 				"	from vw_student_score" + 
 				"	order by " + s
-				+ " desc limit ?";
+				+ " desc, avgScore desc limit ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, cnt);
@@ -152,7 +152,7 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 	public List<StudentScoreAll> selectStudentScoreOrderBySubject(String s) {
 		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore"
 				+ " from vw_student_score"
-				+ " order by " + s + " desc";
+				+ " order by " + s + " desc, avgScore desc";
 		try (Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -164,6 +164,54 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 				return list;
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<StudentScoreAll> selectStudentScoreByBan(Ban ban) {
+		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore" + 
+				"	from vw_student_score" + 
+				"	where banCode=?" + 
+				"	order by avgScore desc";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, ban.getBanCode());
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					List<StudentScoreAll> list = new ArrayList<>();
+					do {
+						list.add(getStudentScoreAll(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<StudentScoreAll> selectStudentScoreByBanSubject(Ban ban, String s) {
+		String sql = "select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore, avgScore" + 
+				"	from vw_student_score" + 
+				"	where banCode=?" + 
+				"	order by " + s + " desc, avgScore desc ";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, ban.getBanCode());
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					List<StudentScoreAll> list = new ArrayList<>();
+					do {
+						list.add(getStudentScoreAll(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
