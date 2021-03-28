@@ -2,18 +2,23 @@ package std_score_management.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import std_score_management.dto.Ban;
+import std_score_management.dto.StudentScoreAll;
 import std_score_management.service.StudentScoreAllService;
 import std_score_management.ui.content.ScoreByBanContentPanel;
 import std_score_management.ui.list.StudentScoreTablePanel;
 
 @SuppressWarnings("serial")
-public class ScoreByBan extends JFrame {
+public class ScoreByBan extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSel;
@@ -60,10 +65,48 @@ public class ScoreByBan extends JFrame {
 		pBtns.setLayout(new GridLayout(0, 2, 10, 0));
 		
 		btnSel = new JButton("조회");
+		btnSel.addActionListener(this);
 		pBtns.add(btnSel);
 		
 		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
 		pBtns.add(btnCancel);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
+		if (e.getSource() == btnSel) {
+			actionPerformedBtnSel(e);
+		}
+	}
+	
+	protected void actionPerformedBtnSel(ActionEvent e) {
+		Ban ban = pContent.getBan();
+		String subject = pContent.getSubject().getSubjectName();
+		if (ban != null && subject != null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreByBanSubject(ban, subject);
+			pList.setInitList(stdList);
+			pList.setList();
+		} else if (ban != null && subject == null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreByBan(ban);
+			pList.setInitList(stdList);
+			pList.setList();
+		} else if (ban == null && subject != null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreOrderBySubject(subject);
+			pList.setInitList(stdList);
+		} else if (ban == null && subject == null) {
+			List<StudentScoreAll> stdList = service.showStudentScoreOrderByAvg();
+			pList.setInitList(stdList);
+		}
+		
+		pList.setList();
+	}
+	
+	protected void actionPerformedBtnCancel(ActionEvent e) {
+		pContent.clearTf();
+		pList.initList();
+		pList.loadData();
+	}
 }

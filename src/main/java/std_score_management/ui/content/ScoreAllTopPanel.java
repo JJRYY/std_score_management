@@ -82,7 +82,6 @@ public class ScoreAllTopPanel extends JPanel {
 			subjectName = subject.getSubjectName();
 		}
 		return new Subject(subjectCode, subjectName);
-//		return new Subject(subject.getSubjectCode(), subject.getSubjectName());
 	}
 	
 

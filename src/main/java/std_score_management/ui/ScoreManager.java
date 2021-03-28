@@ -1,25 +1,42 @@
 package std_score_management.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import std_score_management.ui.content.StdSimplePanel;
+
+import std_score_management.dto.Student;
+import std_score_management.dto.StudentScoreAll;
+import std_score_management.service.ScoreService;
+import std_score_management.service.StudentScoreAllService;
+import std_score_management.service.StudentService;
 import std_score_management.ui.content.ScoreInputPanel;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import std_score_management.ui.content.StdSimplePanel;
 
 @SuppressWarnings("serial")
-public class ScoreManager extends JFrame {
+public class ScoreManager extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSel;
 	private JButton btnStdInfo;
+	private StudentScoreAllService service;
+	private ScoreService scoreService;
+	private StudentService stdService;
+	private StdSimplePanel pStd;
+	private JButton btnInput;
+	private JButton btnDelete;
+	private JButton btnCancel;
+	private ScoreInputPanel pScoreInput;
 
 	public ScoreManager() {
+		service = new StudentScoreAllService();
+		scoreService = new ScoreService();
+		stdService = new StudentService();
 		initialize();
 	}
 	private void initialize() {
@@ -34,23 +51,25 @@ public class ScoreManager extends JFrame {
 		JPanel pSouth = new JPanel();
 		contentPane.add(pSouth, BorderLayout.SOUTH);
 		
-		JButton btnInput = new JButton("입력");
+		btnInput = new JButton("입력");
 		pSouth.add(btnInput);
 		
-		JButton btnDelete = new JButton("삭제");
+		btnDelete = new JButton("삭제");
 		pSouth.add(btnDelete);
 		
-		JButton btnCancel = new JButton("취소");
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
 		pSouth.add(btnCancel);
 		
-		ScoreInputPanel pCenter = new ScoreInputPanel();
-		contentPane.add(pCenter, BorderLayout.CENTER);
+		pScoreInput = new ScoreInputPanel();
+		contentPane.add(pScoreInput, BorderLayout.CENTER);
 		
 		JPanel pNorth = new JPanel();
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		pNorth.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		StdSimplePanel pStd = new StdSimplePanel();
+		pStd = new StdSimplePanel();
+		pStd.setService(service);
 		pNorth.add(pStd);
 		
 		JPanel pBtn = new JPanel();
@@ -59,10 +78,33 @@ public class ScoreManager extends JFrame {
 		pBtn.setLayout(new GridLayout(0, 1, 10, 10));
 		
 		btnSel = new JButton("조회");
+		btnSel.addActionListener(this);
 		pBtn.add(btnSel);
 		
 		btnStdInfo = new JButton("학생정보확인");
 		pBtn.add(btnStdInfo);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancel) {
+			actionPerformedBtnCancel(e);
+		}
+		if (e.getSource() == btnSel) {
+			actionPerformedBtnSel(e);
+		}
+	}
+	
+	protected void actionPerformedBtnSel(ActionEvent e) {
+		Student newStd = pStd.getItem();
+		Student newStd2 = stdService.showStudentByNo(newStd);
+		pStd.setItem(newStd2);
+		
+		StudentScoreAll newScore = service.selectStudentScoreByStdNo(newStd);
+		pScoreInput.setItem(newScore);
+	}
+	
+	protected void actionPerformedBtnCancel(ActionEvent e) {
+		pStd.clearTf();
+		pScoreInput.clearTf();
+	}
 }

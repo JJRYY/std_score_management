@@ -49,4 +49,12 @@ public class StudentScoreAllService {
 	public List<Ban> showBanList(){
 		return banDao.selectBanByAll();
 	}
+	
+	public List<StudentScoreAll> showStudentScoreByBan(Ban ban) {
+		return stdScoreAllDao.selectStudentScoreByBan(ban);
+	}
+	
+	public List<StudentScoreAll> showStudentScoreByBanSubject(Ban ban, String s){
+		return stdScoreAllDao.selectStudentScoreByBanSubject(ban, s);
+	}
 }

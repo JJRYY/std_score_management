@@ -12,6 +12,10 @@ public class StudentService {
 	public List<Student> showStudents() {
 		return stdDao.selectStudentByAll();
 	}
+
+	public Student showStudentByNo(Student student) {
+		return stdDao.selectStudentByNo(student);
+	}
 	
 	public void addStudent (Student student) {
 		stdDao.insertStudent(student);

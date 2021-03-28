@@ -58,4 +58,47 @@ public class ScoreByBanContentPanel extends JPanel {
 		add(cmbSubject);
 	}
 
+	public Ban getBan() {
+		Ban ban = null;
+		if(cmbBan.getSelectedIndex() == -1) {
+			return ban;
+		}
+		if(cmbBan.getSelectedIndex() != -1) {
+			ban = (Ban) cmbBan.getSelectedItem();
+		}
+		return ban;
+	}
+	
+	public Subject getSubject() {
+		Subject subject = null;
+		int subjectCode = 0;
+		String subjectName = null;
+		if(cmbSubject.getSelectedIndex() != -1) {
+			subject = (Subject) cmbSubject.getSelectedItem();
+			subjectCode = subject.getSubjectCode();
+			subjectName = subject.getSubjectName();
+		}
+		return new Subject(subjectCode, subjectName);
+	}
+	
+	public void clearTf() {
+		cmbBan.setSelectedIndex(-1);
+		cmbSubject.setSelectedIndex(-1);
+	}
+
+	public JComboBox<Ban> getCmbBan() {
+		return cmbBan;
+	}
+
+	public void setCmbBan(JComboBox<Ban> cmbBan) {
+		this.cmbBan = cmbBan;
+	}
+
+	public JComboBox<Subject> getCmbSubject() {
+		return cmbSubject;
+	}
+
+	public void setCmbSubject(JComboBox<Subject> cmbSubject) {
+		this.cmbSubject = cmbSubject;
+	}
 }

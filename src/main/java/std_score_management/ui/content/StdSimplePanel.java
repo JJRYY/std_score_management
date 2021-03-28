@@ -1,25 +1,44 @@
 package std_score_management.ui.content;
 
 import java.awt.GridLayout;
+import java.util.List;
+import java.util.Vector;
 
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
+import std_score_management.dto.Ban;
+import std_score_management.dto.Student;
+import std_score_management.service.StudentScoreAllService;
+import std_score_management.service.StudentService;
 
 @SuppressWarnings("serial")
 public class StdSimplePanel extends JPanel {
 	private JTextField tfStdNo;
-	private JTextField tfName;
-	private JComboBox cmbBan;
+	private JTextField tfStdName;
+	private JComboBox<Ban> cmbBan;
+	private StudentScoreAllService service;
+	private StudentService stdService;
 
 	public StdSimplePanel() {
 
 		initialize();
 	}
+	
+	public void setService(StudentScoreAllService service) {
+		this.service = service;
+		
+		List<Ban> banList = service.showBanList();
+		DefaultComboBoxModel<Ban> banModel = new DefaultComboBoxModel<>(new Vector(banList));
+		cmbBan.setModel(banModel);
+		cmbBan.setSelectedIndex(-1);
+	}
+	
 	private void initialize() {
 		setBorder(new TitledBorder(null, "학생 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new GridLayout(0, 2, 10, 10));
@@ -36,16 +55,64 @@ public class StdSimplePanel extends JPanel {
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblName);
 		
-		tfName = new JTextField();
-		add(tfName);
-		tfName.setColumns(10);
+		tfStdName = new JTextField();
+		tfStdName.setEditable(false);
+		add(tfStdName);
+		tfStdName.setColumns(10);
 		
 		JLabel lblBan = new JLabel("분반");
 		lblBan.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblBan);
 		
-		cmbBan = new JComboBox();
+		cmbBan = new JComboBox<>();
+		cmbBan.setEnabled(false);
 		add(cmbBan);
 	}
+
+	public Student getItem() {
+		int stdNo = Integer.parseInt(tfStdNo.getText().trim());
+//		String stdName = tfStdName.getText().trim();
+//		Ban banCode = (Ban) cmbBan.getSelectedItem();
+				
+		return new Student(stdNo);
+	}
+	
+	public void setItem(Student item) {
+		tfStdNo.setText(item.getStdNo() + "");
+		tfStdName.setText(item.getStdName());
+		cmbBan.setSelectedItem(item.getBanCode());
+	}
+	
+	public void clearTf() {
+		tfStdNo.setText("");
+		tfStdName.setText("");
+		cmbBan.setSelectedIndex(-1);
+	}
+	
+	public JTextField getTfStdNo() {
+		return tfStdNo;
+	}
+
+	public void setTfStdNo(JTextField tfStdNo) {
+		this.tfStdNo = tfStdNo;
+	}
+
+	public JTextField getTfName() {
+		return tfStdName;
+	}
+
+	public void setTfName(JTextField tfName) {
+		this.tfStdName = tfName;
+	}
+
+	public JComboBox<Ban> getCmbBan() {
+		return cmbBan;
+	}
+
+	public void setCmbBan(JComboBox<Ban> cmbBan) {
+		this.cmbBan = cmbBan;
+	}
+	
+	
 
 }
