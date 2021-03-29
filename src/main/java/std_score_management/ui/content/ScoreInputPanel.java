@@ -11,7 +11,7 @@ import javax.swing.border.TitledBorder;
 import std_score_management.dto.StudentScoreAll;
 import std_score_management.service.ScoreService;
 import std_score_management.service.StudentScoreAllService;
-import std_score_management.ui.exception.NotExistException;
+import std_score_management.ui.exception.ScoreNotExistException;
 
 @SuppressWarnings("serial")
 public class ScoreInputPanel extends JPanel {
@@ -84,7 +84,7 @@ public class ScoreInputPanel extends JPanel {
 
 	public void setItem(StudentScoreAll item) {
 		if (item == null) {
-			throw new NotExistException();
+			throw new ScoreNotExistException();
 		}
 		tfKor.setText(item.getKor() + "");
 		tfEng.setText(item.getEng() + "");

@@ -19,7 +19,8 @@ import std_score_management.service.StudentService;
 import std_score_management.ui.content.ScoreInputPanel;
 import std_score_management.ui.content.StdSimplePanel;
 import std_score_management.ui.exception.InvalidCheckException;
-import std_score_management.ui.exception.NotExistException;
+import std_score_management.ui.exception.ScoreNotExistException;
+import std_score_management.ui.exception.StdNotExistException;
 
 @SuppressWarnings("serial")
 public class ScoreManager extends JFrame implements ActionListener {
@@ -96,8 +97,13 @@ public class ScoreManager extends JFrame implements ActionListener {
 			if (e.getSource() == btnSel) {
 				actionPerformedBtnSel(e);
 			}
-		} catch (InvalidCheckException | NotExistException e1) {
+		} catch (InvalidCheckException | ScoreNotExistException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
+			pScoreInput.clearTf();
+		} catch (StdNotExistException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage());
+			pStd.clearTf();
+			pScoreInput.clearTf();
 		}
 	}
 	
