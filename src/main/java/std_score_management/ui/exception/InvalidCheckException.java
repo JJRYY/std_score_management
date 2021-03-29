@@ -7,7 +7,7 @@ public class InvalidCheckException extends RuntimeException {
 
 	public InvalidCheckException() {
 		super("공백이 존재합니다");
-		JOptionPane.showMessageDialog(null, "공백이 존재합니다");
+//		JOptionPane.showMessageDialog(null, "공백이 존재합니다");
 	}
 
 	public InvalidCheckException(Throwable cause) {

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -17,6 +18,8 @@ import std_score_management.service.StudentScoreAllService;
 import std_score_management.service.StudentService;
 import std_score_management.ui.content.ScoreInputPanel;
 import std_score_management.ui.content.StdSimplePanel;
+import std_score_management.ui.exception.InvalidCheckException;
+import std_score_management.ui.exception.NotExistException;
 
 @SuppressWarnings("serial")
 public class ScoreManager extends JFrame implements ActionListener {
@@ -89,8 +92,12 @@ public class ScoreManager extends JFrame implements ActionListener {
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
-		if (e.getSource() == btnSel) {
-			actionPerformedBtnSel(e);
+		try {
+			if (e.getSource() == btnSel) {
+				actionPerformedBtnSel(e);
+			}
+		} catch (InvalidCheckException | NotExistException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}
 	}
 	

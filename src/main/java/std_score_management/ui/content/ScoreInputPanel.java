@@ -8,10 +8,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import std_score_management.dto.Score;
 import std_score_management.dto.StudentScoreAll;
 import std_score_management.service.ScoreService;
 import std_score_management.service.StudentScoreAllService;
+import std_score_management.ui.exception.NotExistException;
 
 @SuppressWarnings("serial")
 public class ScoreInputPanel extends JPanel {
@@ -83,6 +83,9 @@ public class ScoreInputPanel extends JPanel {
 	}
 
 	public void setItem(StudentScoreAll item) {
+		if (item == null) {
+			throw new NotExistException();
+		}
 		tfKor.setText(item.getKor() + "");
 		tfEng.setText(item.getEng() + "");
 		tfMath.setText(item.getMath() + "");

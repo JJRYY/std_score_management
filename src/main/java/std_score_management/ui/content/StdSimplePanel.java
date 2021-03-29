@@ -16,6 +16,8 @@ import std_score_management.dto.Ban;
 import std_score_management.dto.Student;
 import std_score_management.service.StudentScoreAllService;
 import std_score_management.service.StudentService;
+import std_score_management.ui.exception.InvalidCheckException;
+import std_score_management.ui.exception.NotExistException;
 
 @SuppressWarnings("serial")
 public class StdSimplePanel extends JPanel {
@@ -70,6 +72,7 @@ public class StdSimplePanel extends JPanel {
 	}
 
 	public Student getItem() {
+		validCheck();
 		int stdNo = Integer.parseInt(tfStdNo.getText().trim());
 //		String stdName = tfStdName.getText().trim();
 //		Ban banCode = (Ban) cmbBan.getSelectedItem();
@@ -77,7 +80,17 @@ public class StdSimplePanel extends JPanel {
 		return new Student(stdNo);
 	}
 	
+	private void validCheck() {
+		if (tfStdNo.getText().equals("")) {
+			throw new InvalidCheckException();
+		}
+		
+	}
+
 	public void setItem(Student item) {
+		if (item == null) {
+			throw new NotExistException();
+		}
 		tfStdNo.setText(item.getStdNo() + "");
 		tfStdName.setText(item.getStdName());
 		cmbBan.setSelectedItem(item.getBanCode());
