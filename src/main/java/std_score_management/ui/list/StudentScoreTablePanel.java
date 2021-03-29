@@ -39,6 +39,7 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 	
 	@Override
 	public Object[] toArray(StudentScoreAll t) {
+		String avg = String.format("%.2f", t.getAvg());
 		return new Object[] {
 								t.getStdNo().getStdNo(),
 								t.getStdName(),
@@ -49,7 +50,7 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 								t.getSoc(),
 								t.getSci(),
 								t.getSum(),
-								t.getAvg()
+								avg
 							};
 	}
 
