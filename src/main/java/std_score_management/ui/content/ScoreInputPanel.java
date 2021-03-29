@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 import std_score_management.dto.StudentScoreAll;
 import std_score_management.service.ScoreService;
 import std_score_management.service.StudentScoreAllService;
+import std_score_management.ui.exception.InvalidCheckException;
 import std_score_management.ui.exception.ScoreNotExistException;
 
 @SuppressWarnings("serial")
@@ -94,15 +95,26 @@ public class ScoreInputPanel extends JPanel {
 	}
 	
 	public StudentScoreAll getItem() {
+		validCheck();
 		int kor = Integer.parseInt(tfKor.getText().trim());
-		int eng = Integer.parseInt(tfKor.getText().trim());
-		int math = Integer.parseInt(tfKor.getText().trim());
-		int soc = Integer.parseInt(tfKor.getText().trim());
-		int sci = Integer.parseInt(tfKor.getText().trim());
+		int eng = Integer.parseInt(tfEng.getText().trim());
+		int math = Integer.parseInt(tfMath.getText().trim());
+		int soc = Integer.parseInt(tfSoc.getText().trim());
+		int sci = Integer.parseInt(tfSci.getText().trim());
 		
 		return new StudentScoreAll(kor, eng, math, soc, sci);
 	}
 	
+	private void validCheck() {
+		if (tfKor.getText().equals("")
+				|| tfEng.getText().equals("")
+				|| tfMath.getText().equals("")
+				|| tfSoc.getText().equals("")
+				|| tfSci.getText().equals("")){
+					throw new InvalidCheckException();
+				}
+	}
+
 	public void clearTf() {
 		tfKor.setText("");
 		tfEng.setText("");

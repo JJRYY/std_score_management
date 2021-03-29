@@ -68,7 +68,7 @@ public class ScoreAll extends JFrame implements ActionListener {
 		panel_2.add(pBtn);
 		pBtn.setLayout(new GridLayout(0, 2, 10, 0));
 		
-		btnSel = new JButton("조회");
+		btnSel = new JButton("정렬");
 		btnSel.addActionListener(this);
 		pBtn.add(btnSel);
 		

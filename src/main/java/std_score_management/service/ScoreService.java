@@ -13,6 +13,10 @@ public class ScoreService {
 		return dao.selectScoreByAll();
 	}
 	
+	public List<Score> showScoreByNo(Score score){
+		return dao.selectScoreByNo(score);
+	}
+	
 	public void addScore(Score score){
 		dao.insertScore(score);
 	}

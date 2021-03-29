@@ -72,6 +72,9 @@ public class ScoreMain extends JFrame implements ActionListener {
 		btnScoreAll.addActionListener(this);
 		pBtn.add(btnScoreAll);
 		
+		JButton btnBan = new JButton("분반 관리");
+		pBtn.add(btnBan);
+		
 		pStdList = new StudentScoreTablePanel();
 		pStdList.setService(service);
 		pStdList.loadData();

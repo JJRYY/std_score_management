@@ -64,7 +64,7 @@ public class ScoreByBan extends JFrame implements ActionListener {
 		panel_1.add(pBtns);
 		pBtns.setLayout(new GridLayout(0, 2, 10, 0));
 		
-		btnSel = new JButton("조회");
+		btnSel = new JButton("정렬");
 		btnSel.addActionListener(this);
 		pBtns.add(btnSel);
 		
