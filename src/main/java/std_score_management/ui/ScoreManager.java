@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import std_score_management.dto.Score;
 import std_score_management.dto.Student;
 import std_score_management.dto.StudentScoreAll;
+import std_score_management.dto.Subject;
 import std_score_management.service.ScoreService;
 import std_score_management.service.StudentScoreAllService;
 import std_score_management.service.StudentService;
@@ -36,6 +38,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 	private JButton btnDelete;
 	private JButton btnCancel;
 	private ScoreInputPanel pScoreInput;
+	private JButton btnUpdate;
 
 	public ScoreManager() {
 		service = new StudentScoreAllService();
@@ -56,9 +59,14 @@ public class ScoreManager extends JFrame implements ActionListener {
 		contentPane.add(pSouth, BorderLayout.SOUTH);
 		
 		btnInput = new JButton("입력");
+		btnInput.addActionListener(this);
 		pSouth.add(btnInput);
 		
 		btnDelete = new JButton("삭제");
+		btnDelete.addActionListener(this);
+		
+		btnUpdate = new JButton("수정");
+		pSouth.add(btnUpdate);
 		pSouth.add(btnDelete);
 		
 		btnCancel = new JButton("취소");
@@ -85,11 +93,17 @@ public class ScoreManager extends JFrame implements ActionListener {
 		btnSel.addActionListener(this);
 		pBtn.add(btnSel);
 		
-		btnStdInfo = new JButton("학생정보확인");
+		btnStdInfo = new JButton("학생상세정보");
 		pBtn.add(btnStdInfo);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnDelete) {
+			actionPerformedBtnDelete(e);
+		}
+		if (e.getSource() == btnInput) {
+			actionPerformedBtnInput(e);
+		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
 		}
@@ -117,6 +131,51 @@ public class ScoreManager extends JFrame implements ActionListener {
 	}
 	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
+		pStd.clearTf();
+		pScoreInput.clearTf();
+	}
+	
+	protected void actionPerformedBtnInput(ActionEvent e) {
+		Student newStd = pStd.getItem();
+		
+		if(!pScoreInput.getTfKor().getText().equals("")) {
+			int kor = Integer.parseInt(pScoreInput.getTfKor().getText().trim());
+			Score korScore = new Score(newStd, new Subject(101), kor);
+			scoreService.addScore(korScore);
+		}
+		if(!pScoreInput.getTfEng().getText().equals("")) {
+			int eng =  Integer.parseInt(pScoreInput.getTfEng().getText().trim());
+			Score engScore = new Score(newStd, new Subject(201), eng);
+			scoreService.addScore(engScore);
+		}
+		if(!pScoreInput.getTfMath().getText().equals("")) {
+			int math =  Integer.parseInt(pScoreInput.getTfMath().getText().trim());
+			Score mathScore = new Score(newStd, new Subject(301), math);
+			scoreService.addScore(mathScore);
+		}
+		if(!pScoreInput.getTfSoc().getText().equals("")) {
+			int soc =  Integer.parseInt(pScoreInput.getTfSoc().getText().trim());
+			Score socScore = new Score(newStd, new Subject(401), soc);
+			scoreService.addScore(socScore);
+		}
+		if(!pScoreInput.getTfSci().getText().equals("")) {
+			int sci =  Integer.parseInt(pScoreInput.getTfSci().getText().trim());
+			Score sciScore = new Score(newStd, new Subject(501), sci);
+			scoreService.addScore(sciScore);
+		}
+		
+		JOptionPane.showMessageDialog(null, "추가완료");
+		pStd.clearTf();
+		pScoreInput.clearTf();
+		
+	}
+	protected void actionPerformedBtnDelete(ActionEvent e) {
+		Student newStd = pStd.getItem();
+		Score score = new Score(newStd);
+		
+		scoreService.removeScore(score);
+		
+		JOptionPane.showMessageDialog(null, "삭제완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
 	}

@@ -72,6 +72,7 @@ select s.stdNo, stdName, banCode,
 
 select * from student;
 select * from score; 
+select * from subject;
 
 insert into score values (null, 40001, 101, 80);
 insert into score values (null, 40001, 201, 70);
