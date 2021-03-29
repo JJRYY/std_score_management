@@ -9,6 +9,7 @@ import java.util.List;
 
 import std_score_management.dao.BanDao;
 import std_score_management.dto.Ban;
+import std_score_management.ui.exception.SqlConstraintException;
 import std_score_management.util.JdbcUtil;
 
 public class BanDaoImpl implements BanDao {
@@ -70,9 +71,10 @@ public class BanDaoImpl implements BanDao {
 			pstmt.setString(1, ban.getBanCode());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			throw new SqlConstraintException();
 		}
-		return 0;
+//		return 0;
 	}
 
 	@Override
@@ -83,9 +85,10 @@ public class BanDaoImpl implements BanDao {
 			pstmt.setString(1, ban.getBanCode());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SqlConstraintException();
+//			e.printStackTrace();
 		}
-		return 0;
+//		return 0;
 	}
 
 }
