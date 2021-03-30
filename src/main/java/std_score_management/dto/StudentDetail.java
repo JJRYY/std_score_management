@@ -56,6 +56,28 @@ public class StudentDetail {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + stdNo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentDetail other = (StudentDetail) obj;
+		if (stdNo != other.stdNo)
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return String.format("StudentDetail [stdNo=%s, gender=%s, enterDate=%s, stdPhoto=%s]", stdNo, gender, enterDate,
 				Arrays.toString(stdPhoto));
