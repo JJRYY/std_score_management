@@ -169,34 +169,6 @@ public class ScoreManager extends JFrame implements ActionListener {
 			throw new SqlConstraintException();
 		}
 		
-//		if(!pScoreInput.getTfKor().getText().equals("")) {
-//			int kor = Integer.parseInt(pScoreInput.getTfKor().getText().trim());
-//			Score korScore = new Score(newStd, new Subject(101), kor);
-//			scoreService.addScore(korScore);
-//		}
-//		if(!pScoreInput.getTfEng().getText().equals("")) {
-//			int eng =  Integer.parseInt(pScoreInput.getTfEng().getText().trim());
-//			Score engScore = new Score(newStd, new Subject(201), eng);
-//			scoreService.addScore(engScore);
-//		}
-//		if(!pScoreInput.getTfMath().getText().equals("")) {
-//			int math =  Integer.parseInt(pScoreInput.getTfMath().getText().trim());
-//			Score mathScore = new Score(newStd, new Subject(301), math);
-//			scoreService.addScore(mathScore);
-//		}
-//		if(!pScoreInput.getTfSoc().getText().equals("")) {
-//			int soc =  Integer.parseInt(pScoreInput.getTfSoc().getText().trim());
-//			Score socScore = new Score(newStd, new Subject(401), soc);
-//			scoreService.addScore(socScore);
-//		}
-//		if(!pScoreInput.getTfSci().getText().equals("")) {
-//			int sci =  Integer.parseInt(pScoreInput.getTfSci().getText().trim());
-//			Score sciScore = new Score(newStd, new Subject(501), sci);
-//			scoreService.addScore(sciScore);
-//		}
-		
-		
-		
 		JOptionPane.showMessageDialog(null, "추가완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
@@ -215,32 +187,6 @@ public class ScoreManager extends JFrame implements ActionListener {
 	
 	protected void actionPerformedBtnUpdate(ActionEvent e) {
 		Student newStd = pStd.getItem();
-		
-//		if(!pScoreInput.getTfKor().getText().equals("")) {
-//			int kor = Integer.parseInt(pScoreInput.getTfKor().getText().trim());
-//			Score korScore = new Score(newStd, new Subject(101), kor);
-//			scoreService.updateScore(korScore);
-//		}
-//		if(!pScoreInput.getTfEng().getText().equals("")) {
-//			int eng =  Integer.parseInt(pScoreInput.getTfEng().getText().trim());
-//			Score engScore = new Score(newStd, new Subject(201), eng);
-//			scoreService.updateScore(engScore);
-//		}
-//		if(!pScoreInput.getTfMath().getText().equals("")) {
-//			int math =  Integer.parseInt(pScoreInput.getTfMath().getText().trim());
-//			Score mathScore = new Score(newStd, new Subject(301), math);
-//			scoreService.updateScore(mathScore);
-//		}
-//		if(!pScoreInput.getTfSoc().getText().equals("")) {
-//			int soc =  Integer.parseInt(pScoreInput.getTfSoc().getText().trim());
-//			Score socScore = new Score(newStd, new Subject(401), soc);
-//			scoreService.updateScore(socScore);
-//		}
-//		if(!pScoreInput.getTfSci().getText().equals("")) {
-//			int sci =  Integer.parseInt(pScoreInput.getTfSci().getText().trim());
-//			Score sciScore = new Score(newStd, new Subject(501), sci);
-//			scoreService.updateScore(sciScore);
-//		}
 		
 		StudentScoreAll newScore = pScoreInput.getItem();
 		int kor = newScore.getKor();

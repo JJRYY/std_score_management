@@ -58,7 +58,6 @@ public class StdSimplePanel extends JPanel {
 		add(lblName);
 		
 		tfStdName = new JTextField();
-		tfStdName.setEditable(false);
 		add(tfStdName);
 		tfStdName.setColumns(10);
 		
@@ -67,15 +66,14 @@ public class StdSimplePanel extends JPanel {
 		add(lblBan);
 		
 		cmbBan = new JComboBox<>();
-		cmbBan.setEnabled(false);
 		add(cmbBan);
 	}
 
 	public Student getItem() {
 		validCheck();
 		int stdNo = Integer.parseInt(tfStdNo.getText().trim());
-//		String stdName = tfStdName.getText().trim();
-//		Ban banCode = (Ban) cmbBan.getSelectedItem();
+		String stdName = tfStdName.getText().trim();
+		Ban banCode = (Ban) cmbBan.getSelectedItem();
 				
 		return new Student(stdNo);
 	}
