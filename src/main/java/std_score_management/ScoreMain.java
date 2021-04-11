@@ -12,6 +12,7 @@ import std_score_management.ui.BanManager;
 import std_score_management.ui.ScoreAll;
 import std_score_management.ui.ScoreByBan;
 import std_score_management.ui.ScoreManager;
+import std_score_management.ui.StudentManager;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ public class ScoreMain extends JFrame implements ActionListener {
 	private StudentScoreAllService service;
 	private StudentScoreTablePanel pStdList;
 	private JButton btnBan;
+	private JButton btnStd;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,7 +61,8 @@ public class ScoreMain extends JFrame implements ActionListener {
 		JPanel pBtn = new JPanel();
 		contentPane.add(pBtn, BorderLayout.NORTH);
 		
-		JButton btnStd = new JButton("학생정보");
+		btnStd = new JButton("학생정보");
+		btnStd.addActionListener(this);
 		pBtn.add(btnStd);
 		
 		btnStdScore = new JButton("학생 성적 입력");
@@ -85,6 +88,9 @@ public class ScoreMain extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnStd) {
+			actionPerformedBtnStd(e);
+		}
 		if (e.getSource() == btnBan) {
 			actionPerformedBtnBan(e);
 		}
@@ -112,6 +118,10 @@ public class ScoreMain extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnBan(ActionEvent e) {
 		BanManager frame = new BanManager();
+		frame.setVisible(true);
+	}
+	protected void actionPerformedBtnStd(ActionEvent e) {
+		StudentManager frame = new StudentManager();
 		frame.setVisible(true);
 	}
 }

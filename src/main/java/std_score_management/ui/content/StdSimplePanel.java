@@ -72,10 +72,23 @@ public class StdSimplePanel extends JPanel {
 	public Student getItem() {
 		validCheck();
 		int stdNo = Integer.parseInt(tfStdNo.getText().trim());
-		String stdName = tfStdName.getText().trim();
-		Ban banCode = (Ban) cmbBan.getSelectedItem();
+//		String stdName = tfStdName.getText().trim();
+//		Ban banCode = (Ban) cmbBan.getSelectedItem();
 				
 		return new Student(stdNo);
+	}
+	
+	public Student getStudent() {
+		if (tfStdNo.getText().equals("") || tfStdName.getText().equals("") 
+				|| cmbBan.getSelectedIndex() == -1) {
+			throw new InvalidCheckException();
+		}
+		
+		int stdNo = Integer.parseInt(tfStdNo.getText().trim());
+		String stdName = tfStdName.getText().trim();
+		Ban banCode = (Ban) cmbBan.getSelectedItem();
+		
+		return new Student(stdNo, stdName, banCode);
 	}
 	
 	private void validCheck() {

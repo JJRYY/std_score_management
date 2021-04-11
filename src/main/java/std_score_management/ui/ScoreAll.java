@@ -35,6 +35,7 @@ public class ScoreAll extends JFrame implements ActionListener {
 		service = new StudentScoreAllService();
 		initialize();
 	}
+	
 	private void initialize() {
 		setTitle("전체 성적");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
