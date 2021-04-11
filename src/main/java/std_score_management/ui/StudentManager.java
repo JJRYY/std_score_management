@@ -100,7 +100,7 @@ public class StudentManager extends JFrame implements ActionListener {
 	protected void actionPerformedBtnSel(ActionEvent e) {
 		Student newStd = pContent.getItem();
 		pContent.setItem(stdService.showStudentByNo(newStd));
-		pList.setList(newStd);
+		pList.searchStudent(newStd);
 	}
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {

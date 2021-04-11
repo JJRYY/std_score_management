@@ -1,9 +1,10 @@
 package std_score_management.ui.list;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.SwingConstants;
+import javax.swing.table.AbstractTableModel;
 
 import std_score_management.dto.Student;
 import std_score_management.service.StudentService;
@@ -16,13 +17,27 @@ public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	public void setService(StudentService service) {
 		this.service = service;
 	}	
-	public void setList(Student std) {
+	public void searchStudent(Student std) {
 		Student newStd = service.showStudentByNo(std);
 		// 선택될 index 찾아서 넣기
 		// 다르게 정렬되면 못찾아감
 		// List에서 valueAt으로 index 찾아서 
-		table.setRowSelectionInterval(index0, index0);
-		ArrayList<Student> arList = list;
+//		ArrayList<Student> arList = new ArrayList<Student>();
+//		arList.addAll(list);
+//		int idx = arList.indexOf(newStd);
+		
+		int j = 0;
+		for (int i = 0; i < list.size(); i ++) {
+			if ((int) table.getValueAt(i, 0) == newStd.getStdNo()) {
+				j = i;
+				break;
+			}
+		}
+		
+//		int idx = list.indexOf(newStd);
+	
+		table.setRowSelectionInterval(j, j);
+		table.scrollRectToVisible(new Rectangle(table.getCellRect(j, 0, true)));
 		
 	}
 	
