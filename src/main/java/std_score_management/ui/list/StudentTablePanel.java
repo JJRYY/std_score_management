@@ -19,25 +19,23 @@ public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	}	
 	public void searchStudent(Student std) {
 		Student newStd = service.showStudentByNo(std);
-		// 선택될 index 찾아서 넣기
-		// 다르게 정렬되면 못찾아감
-		// List에서 valueAt으로 index 찾아서 
+		// 조회 버튼을 눌렀을때 해당 학생 행을 찾아가게 함
+		
 //		ArrayList<Student> arList = new ArrayList<Student>();
 //		arList.addAll(list);
 //		int idx = arList.indexOf(newStd);
-		
-		int j = 0;
-		for (int i = 0; i < list.size(); i ++) {
+//		int idx = list.indexOf(newStd);
+			
+		int idx = 0;
+		for (int i = 0; i < list.size(); i++) {
 			if ((int) table.getValueAt(i, 0) == newStd.getStdNo()) {
-				j = i;
+				idx = i;
 				break;
 			}
 		}
-		
-//		int idx = list.indexOf(newStd);
 	
-		table.setRowSelectionInterval(j, j);
-		table.scrollRectToVisible(new Rectangle(table.getCellRect(j, 0, true)));
+		table.setRowSelectionInterval(idx, idx);
+		table.scrollRectToVisible(new Rectangle(table.getCellRect(idx, 0, true)));
 		
 	}
 	
