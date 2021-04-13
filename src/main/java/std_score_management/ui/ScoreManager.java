@@ -99,6 +99,15 @@ public class ScoreManager extends JFrame implements ActionListener {
 		btnStdInfo = new JButton("학생상세정보");
 		pBtn.add(btnStdInfo);
 	}
+	
+	public void setStdItem(Student std) {
+		pStd.setItem(std);
+	}
+	
+	public void setScoreItem(Student std) {
+		StudentScoreAll newScore = service.selectStudentScoreByStdNo(std);
+		pScoreInput.setItem(newScore);
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		

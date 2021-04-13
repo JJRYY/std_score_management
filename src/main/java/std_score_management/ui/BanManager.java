@@ -93,6 +93,7 @@ public class BanManager extends JFrame implements ActionListener {
 	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		pContent.clearTf();
+		pList.loadData();
 	}
 	
 	protected void actionPerformedBtnDel(ActionEvent e) {

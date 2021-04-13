@@ -1,23 +1,20 @@
 package std_score_management;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import std_score_management.service.StudentScoreAllService;
 import std_score_management.ui.BanManager;
 import std_score_management.ui.ScoreAll;
 import std_score_management.ui.ScoreByBan;
 import std_score_management.ui.ScoreManager;
 import std_score_management.ui.StudentManager;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import std_score_management.ui.list.StudentScoreTablePanel;
 
 @SuppressWarnings("serial")
 public class ScoreMain extends JFrame implements ActionListener {
@@ -26,8 +23,6 @@ public class ScoreMain extends JFrame implements ActionListener {
 	private JButton btnStdScore;
 	private JButton btnScoreByBan;
 	private JButton btnScoreAll;
-	private StudentScoreAllService service;
-	private StudentScoreTablePanel pStdList;
 	private JButton btnBan;
 	private JButton btnStd;
 
@@ -45,24 +40,24 @@ public class ScoreMain extends JFrame implements ActionListener {
 	}
 
 	public ScoreMain() {
-		service = new StudentScoreAllService();
 		initialize();
 		
 	}
 	private void initialize() {
 		setTitle("학생 성적 관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 633, 300);
+		setBounds(100, 100, 360, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 10));
 		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel pBtn = new JPanel();
-		contentPane.add(pBtn, BorderLayout.NORTH);
+		contentPane.add(pBtn);
 		
 		btnStd = new JButton("학생정보");
 		btnStd.addActionListener(this);
+		pBtn.setLayout(new GridLayout(0, 1, 10, 10));
 		pBtn.add(btnStd);
 		
 		btnStdScore = new JButton("학생 성적 입력");
@@ -80,11 +75,6 @@ public class ScoreMain extends JFrame implements ActionListener {
 		btnBan = new JButton("분반 관리");
 		btnBan.addActionListener(this);
 		pBtn.add(btnBan);
-		
-		pStdList = new StudentScoreTablePanel();
-		pStdList.setService(service);
-		pStdList.loadData();
-		contentPane.add(pStdList, BorderLayout.CENTER);
 	}
 
 	public void actionPerformed(ActionEvent e) {

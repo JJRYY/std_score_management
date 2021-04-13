@@ -95,7 +95,6 @@ public class StdSimplePanel extends JPanel {
 		if (tfStdNo.getText().equals("")) {
 			throw new InvalidCheckException();
 		}
-		
 	}
 
 	public void setItem(Student item) {
@@ -105,12 +104,18 @@ public class StdSimplePanel extends JPanel {
 		tfStdNo.setText(item.getStdNo() + "");
 		tfStdName.setText(item.getStdName());
 		cmbBan.setSelectedItem(item.getBanCode());
+		
+		tfStdNo.setEditable(false);
 	}
 	
 	public void clearTf() {
 		tfStdNo.setText("");
 		tfStdName.setText("");
 		cmbBan.setSelectedIndex(-1);
+		
+		if (!tfStdNo.isEditable()) {
+			tfStdNo.setEditable(true);
+		}
 	}
 	
 	public JTextField getTfStdNo() {

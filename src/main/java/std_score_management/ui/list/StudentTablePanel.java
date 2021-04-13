@@ -17,6 +17,7 @@ public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	public void setService(StudentService service) {
 		this.service = service;
 	}	
+	
 	public void searchStudent(Student std) {
 		Student newStd = service.showStudentByNo(std);
 		// 조회 버튼을 눌렀을때 해당 학생 행을 찾아가게 함
@@ -47,11 +48,10 @@ public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	@Override
 	public Student getItem() {
 		int row = table.getSelectedRow();
-		int stdNo = (int) table.getValueAt(row, 0);
-
 		if (row == -1) {
 			throw new NotSelectedException();
 		}
+		int stdNo = (int) table.getValueAt(row, 0);
 
 		return list.get(list.indexOf(new Student(stdNo)));
 	}
