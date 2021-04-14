@@ -25,6 +25,7 @@ import std_score_management.ui.exception.InvalidCheckException;
 import std_score_management.ui.exception.ScoreNotExistException;
 import std_score_management.ui.exception.SqlConstraintException;
 import std_score_management.ui.exception.StdNotExistException;
+import std_score_management.ui.list.StudentTablePanel;
 
 @SuppressWarnings("serial")
 public class ScoreManager extends JFrame implements ActionListener {
@@ -41,7 +42,12 @@ public class ScoreManager extends JFrame implements ActionListener {
 	private JButton btnCancel;
 	private ScoreInputPanel pScoreInput;
 	private JButton btnUpdate;
-
+	private StudentTablePanel stdTable;
+	
+	public void setStdTable(StudentTablePanel stdTable) {
+		this.stdTable = stdTable;
+	}
+	
 	public ScoreManager() {
 		service = new StudentScoreAllService();
 		scoreService = new ScoreService();
@@ -181,6 +187,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "추가완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
+		stdTable.loadData();
 		
 	}
 	protected void actionPerformedBtnDelete(ActionEvent e) {

@@ -1,19 +1,26 @@
 package std_score_management.ui.list;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
-import javax.swing.table.AbstractTableModel;
 
 import std_score_management.dto.Student;
+import std_score_management.service.StudentDetailService;
+import std_score_management.service.StudentScoreAllService;
 import std_score_management.service.StudentService;
 import std_score_management.ui.exception.NotSelectedException;
 
 @SuppressWarnings("serial")
 public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	private StudentService service;
-
+	private StudentScoreAllService scoreService;
+	private StudentDetailService detailService;
+	
+	public StudentTablePanel() {
+		scoreService = new StudentScoreAllService();
+		detailService = new StudentDetailService();
+	}
+	
 	public void setService(StudentService service) {
 		this.service = service;
 	}	
@@ -59,20 +66,23 @@ public class StudentTablePanel extends AbstractCustomTablePanel<Student> {
 	@Override
 	protected void setAlignAndWidth() {
 		// 컬럼별 내용 정렬
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2);
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4);
 
 		// 컬럼별 너비 조정
-		setTableCellWidth(60, 60, 60);
+		setTableCellWidth(60, 60, 60, 60, 60);
 	}
 
 	@Override
 	public Object[] toArray(Student t) {
-		return new Object[] { t.getStdNo(), t.getStdName(), t.getBanCode() };
+		String isScore = scoreService.selectStudentScoreByStdNo(t) != null? "O" : "X";
+		String isDetail = detailService.showStudentDetailByNo(t) != null? "O" : "X";
+		
+		return new Object[] { t.getStdNo(), t.getStdName(), t.getBanCode(), isDetail, isScore };
 	}
 
 	@Override
 	public String[] getColumnNames() {
-		return new String[] { "학번", "이름", "분반" };
+		return new String[] { "학번", "이름", "분반", "상세정보", "성적입력" };
 	}
 
 }

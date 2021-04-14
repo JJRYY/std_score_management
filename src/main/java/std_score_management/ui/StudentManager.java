@@ -14,7 +14,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
 import std_score_management.dto.Student;
+import std_score_management.dto.StudentDetail;
 import std_score_management.dto.StudentScoreAll;
+import std_score_management.service.StudentDetailService;
 import std_score_management.service.StudentScoreAllService;
 import std_score_management.service.StudentService;
 import std_score_management.ui.content.StdSimplePanel;
@@ -35,10 +37,12 @@ public class StudentManager extends JFrame implements ActionListener {
 	private StdSimplePanel pContent;
 	private StudentService stdService;
 	private StudentScoreAllService service;
+	private StudentDetailService detailService;
 
 	public StudentManager() {
 		service = new StudentScoreAllService();
 		stdService = new StudentService();
+		detailService = new StudentDetailService();
 		initialize();
 	}
 
@@ -137,9 +141,23 @@ public class StudentManager extends JFrame implements ActionListener {
 						frame.setScoreItem(std);
 					}
 					frame.setVisible(true);
+					frame.setStdTable(pList);
+					
 				}
 				if(e.getActionCommand().equals("상세 정보")) {
-					System.out.println("상세정보");
+					Student std = pList.getItem();
+					StudentDetail stdDetail = detailService.showStudentDetailByNo(std);
+					StudentDetailManager frame;
+					if(stdDetail == null) {
+						frame = new StudentDetailManager(true);
+					} else {
+						frame = new StudentDetailManager(false);
+						frame.setDetailItem(stdDetail);
+					}
+					
+					frame.setStdNo(std);
+					frame.setVisible(true);
+					frame.setStdTable(pList);
 				}
 				
 			} catch(NotSelectedException | SqlConstraintException e1) {
