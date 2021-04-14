@@ -96,7 +96,9 @@ public class StudentDetailManager extends JFrame implements ActionListener {
 		StudentDetail stdDetail = pDetail.getItem();
 		detailService.removeStudentDetail(new Student(stdDetail.getStdNo()));
 		JOptionPane.showMessageDialog(null, "삭제 완료");
+		stdTable.loadData();
 		pDetail.clearTf();
+		dispose();
 	}
 
 	protected void actionPerformedBtnUpdate(ActionEvent e) {

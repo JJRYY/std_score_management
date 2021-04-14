@@ -199,6 +199,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "삭제완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
+		stdTable.loadData();
 	}
 	
 	protected void actionPerformedBtnUpdate(ActionEvent e) {
