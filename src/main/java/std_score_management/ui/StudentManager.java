@@ -204,6 +204,7 @@ public class StudentManager extends JFrame implements ActionListener {
 		Student newStd = pContent.getItem();
 		pContent.setItem(stdService.showStudentByNo(newStd));
 		pList.searchStudent(newStd);
+		btnAdd.setText("수정");
 	}
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {
