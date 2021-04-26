@@ -55,7 +55,7 @@ public class StudentDetailPanel extends AbstractContentPanel<StudentDetail> impl
 	private void loadPic(String imgFilePath) {
 		Image changeImage = null;
 		if (imgFilePath == null) {
-			ImageIcon icon = new ImageIcon(imgPath + "noImage.jpg");
+			ImageIcon icon = new ImageIcon(imgPath + "noImage.png");
 			changeImage = icon.getImage().getScaledInstance(120, 150, Image.SCALE_SMOOTH);
 		} else {
 			ImageIcon icon = new ImageIcon(imgFilePath);

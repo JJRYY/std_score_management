@@ -103,6 +103,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 		pBtn.add(btnSel);
 		
 		btnStdInfo = new JButton("학생상세정보");
+		btnStdInfo.setVisible(false);
 		pBtn.add(btnStdInfo);
 	}
 	
