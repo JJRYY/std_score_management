@@ -1,5 +1,6 @@
 package std_score_management.ui.list;
 
+import java.awt.Rectangle;
 import java.util.List;
 
 import javax.swing.SwingConstants;
@@ -71,4 +72,19 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 		return list.get(list.indexOf(new StudentScoreAll(new Student(stdNo))));
 	}
 
+	public void searchStudent(Student std) {
+		StudentScoreAll newStd = service.selectStudentScoreByStdNo(std);
+		// 조회 버튼을 눌렀을때 해당 학생 행을 찾아가게 함
+		int idx = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if ((int) table.getValueAt(i, 0) == newStd.getStdNo().getStdNo()) {
+				idx = i;
+				break;
+			}
+		}
+	
+		table.setRowSelectionInterval(idx, idx);
+		table.scrollRectToVisible(new Rectangle(table.getCellRect(idx, 0, true)));
+		
+	}
 }

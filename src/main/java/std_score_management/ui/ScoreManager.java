@@ -26,6 +26,7 @@ import std_score_management.ui.exception.ScoreNotExistException;
 import std_score_management.ui.exception.SqlConstraintException;
 import std_score_management.ui.exception.StdNotExistException;
 import std_score_management.ui.list.StudentTablePanel;
+import std_score_management.ui.list.StudentScoreTablePanel;
 
 @SuppressWarnings("serial")
 public class ScoreManager extends JFrame implements ActionListener {
@@ -40,9 +41,11 @@ public class ScoreManager extends JFrame implements ActionListener {
 	private JButton btnInput;
 	private JButton btnDelete;
 	private JButton btnCancel;
-	private ScoreInputPanel pScoreInput;
 	private JButton btnUpdate;
 	private StudentTablePanel stdTable;
+	private JPanel panel;
+	private ScoreInputPanel pScoreInput;
+	private StudentScoreTablePanel pList;
 	
 	public void setStdTable(StudentTablePanel stdTable) {
 		this.stdTable = stdTable;
@@ -57,7 +60,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("성적 관리");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(150, 150, 630, 320);
+		setBounds(150, 150, 630, 503);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,9 +85,6 @@ public class ScoreManager extends JFrame implements ActionListener {
 		btnCancel.addActionListener(this);
 		pSouth.add(btnCancel);
 		
-		pScoreInput = new ScoreInputPanel();
-		contentPane.add(pScoreInput, BorderLayout.CENTER);
-		
 		JPanel pNorth = new JPanel();
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		pNorth.setLayout(new GridLayout(0, 2, 0, 0));
@@ -105,6 +105,18 @@ public class ScoreManager extends JFrame implements ActionListener {
 		btnStdInfo = new JButton("학생상세정보");
 		btnStdInfo.setVisible(false);
 		pBtn.add(btnStdInfo);
+		
+		panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new GridLayout(2, 0, 0, 5));
+		
+		pScoreInput = new ScoreInputPanel();
+		panel.add(pScoreInput);
+		
+		pList = new StudentScoreTablePanel();
+		pList.setService(service);
+		pList.loadData();
+		panel.add(pList);
 	}
 	
 	public void setStdItem(Student std) {
@@ -117,14 +129,13 @@ public class ScoreManager extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource() == btnDelete) {
-			actionPerformedBtnDelete(e);
-		}
-		if (e.getSource() == btnCancel) {
-			actionPerformedBtnCancel(e);
-		}
 		try {
+			if (e.getSource() == btnDelete) {
+				actionPerformedBtnDelete(e);
+			}
+			if (e.getSource() == btnCancel) {
+				actionPerformedBtnCancel(e);
+			}
 			if (e.getSource() == btnInput) {
 				actionPerformedBtnInput(e);
 			}
@@ -151,6 +162,8 @@ public class ScoreManager extends JFrame implements ActionListener {
 		
 		StudentScoreAll newScore = service.selectStudentScoreByStdNo(newStd);
 		pScoreInput.setItem(newScore);
+		
+		pList.searchStudent(newStd);
 	}
 	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
@@ -188,7 +201,10 @@ public class ScoreManager extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "추가완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
-		stdTable.loadData();
+		if (stdTable != null) {
+			stdTable.loadData();
+		}
+		pList.loadData();
 		
 	}
 	protected void actionPerformedBtnDelete(ActionEvent e) {
@@ -200,7 +216,10 @@ public class ScoreManager extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "삭제완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
-		stdTable.loadData();
+		if (stdTable != null) {
+			stdTable.loadData();
+		}
+		pList.loadData();
 	}
 	
 	protected void actionPerformedBtnUpdate(ActionEvent e) {
@@ -227,6 +246,6 @@ public class ScoreManager extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, "수정완료");
 		pStd.clearTf();
 		pScoreInput.clearTf();
-		
+		pList.loadData();
 	}
 }
