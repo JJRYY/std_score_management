@@ -129,13 +129,6 @@ grant all
 	on std_score.*
 	to 'user_std_score'@'localhost' identified by 'rootroot';
 
--- photo(photoNo), score(scoreNo) auto_increment 추가
-alter table std_score.photo 
-	modify photoNo int not null auto_increment;
-	
-alter table std_score.score
-	modify scoreNo int not null auto_increment;
-
 -- delete on cascade 추가. 학생정보를 삭제하면 점수테이블에서의 점수도 삭제
 
 
