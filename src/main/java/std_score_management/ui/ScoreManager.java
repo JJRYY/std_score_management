@@ -91,6 +91,8 @@ public class ScoreManager extends JFrame implements ActionListener {
 		
 		pStd = new StdSimplePanel();
 		pStd.setService(service);
+		pStd.getTfName().setEditable(false);
+		pStd.getCmbBan().setEnabled(false);
 		pNorth.add(pStd);
 		
 		JPanel pBtn = new JPanel();
