@@ -21,7 +21,10 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 	protected JTable table;
 	protected List<T> list;
 	
-	
+	public JTable getTable() {
+		return table;
+	}
+
 	public AbstractCustomTablePanel() {
 		initialize();
 		

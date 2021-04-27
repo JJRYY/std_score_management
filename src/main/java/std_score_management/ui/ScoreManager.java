@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import std_score_management.dto.Score;
@@ -25,8 +29,8 @@ import std_score_management.ui.exception.InvalidCheckException;
 import std_score_management.ui.exception.ScoreNotExistException;
 import std_score_management.ui.exception.SqlConstraintException;
 import std_score_management.ui.exception.StdNotExistException;
-import std_score_management.ui.list.StudentTablePanel;
 import std_score_management.ui.list.StudentScoreTablePanel;
+import std_score_management.ui.list.StudentTablePanel;
 
 @SuppressWarnings("serial")
 public class ScoreManager extends JFrame implements ActionListener {
@@ -119,6 +123,21 @@ public class ScoreManager extends JFrame implements ActionListener {
 		pList.setService(service);
 		pList.loadData();
 		panel.add(pList);
+		pList.getTable().addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JTable table = (JTable) e.getSource();
+				int row = table.getSelectedRow();
+				int stdNo = (int) table.getValueAt(row, 0);
+				
+				Student newStd = stdService.showStudentByNo(new Student(stdNo));
+				pStd.setItem(newStd);
+				
+				StudentScoreAll score = service.selectStudentScoreByStdNo(newStd);
+				pScoreInput.setItem(score);
+			}
+		});
 	}
 	
 	public void setStdItem(Student std) {
