@@ -54,13 +54,13 @@ public class ScoreDaoImpl implements ScoreDao {
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, score.getStdNo().getStdNo());
 			try(ResultSet rs = pstmt.executeQuery()){
-			if(rs.next()) {
-				List<Score> list = new ArrayList<>();
-				do {
-					list.add(getScore(rs));
-				} while(rs.next());
-				return list;
-			}
+				if(rs.next()) {
+					List<Score> list = new ArrayList<>();
+					do {
+						list.add(getScore(rs));
+					} while(rs.next());
+					return list;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

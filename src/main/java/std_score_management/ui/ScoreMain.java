@@ -1,4 +1,4 @@
-package std_score_management;
+package std_score_management.ui;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -10,12 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import std_score_management.ui.BanManager;
-import std_score_management.ui.ScoreAll;
-import std_score_management.ui.ScoreByBan;
-import std_score_management.ui.ScoreManager;
-import std_score_management.ui.StudentManager;
-
 @SuppressWarnings("serial")
 public class ScoreMain extends JFrame implements ActionListener {
 
@@ -25,19 +19,6 @@ public class ScoreMain extends JFrame implements ActionListener {
 	private JButton btnScoreAll;
 	private JButton btnBan;
 	private JButton btnStd;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ScoreMain frame = new ScoreMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public ScoreMain() {
 		initialize();

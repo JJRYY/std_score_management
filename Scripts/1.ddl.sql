@@ -124,10 +124,30 @@ ALTER TABLE std_score.std_detail
 		)
 		ON DELETE CASCADE;
 
+-- 로그인
+CREATE TABLE std_score.login (
+	id     VARCHAR(20) NOT NULL COMMENT 'id', -- id
+	passwd CHAR(41)    NOT NULL COMMENT 'passwd', -- passwd
+	email  VARCHAR(40) NULL     COMMENT 'email' -- email
+)
+COMMENT '로그인';
+
+-- 로그인
+ALTER TABLE std_score.login
+	ADD CONSTRAINT PK_login -- 로그인 기본키
+		PRIMARY KEY (
+			id -- id
+		);
+
 -- 권한 부여
 grant all 
 	on std_score.*
 	to 'user_std_score'@'localhost' identified by 'rootroot';
+
+-- file 권한(backup, load) -- root만 권한 부여 가능
+GRANT File 
+   ON *.* 
+   TO 'user_std_score'@'localhost';
 
 -- delete on cascade 추가. 학생정보를 삭제하면 점수테이블에서의 점수도 삭제
 

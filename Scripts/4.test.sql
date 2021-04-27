@@ -131,3 +131,7 @@ select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore
 	from vw_student_score
 	where banCode='B01'
 	order by 국어 desc, avgScore desc; 
+	
+-- 로그인 아이디 조회
+select id, passwd, email from login;
+select id, passwd, email from login where id='test' and passwd=password('test');

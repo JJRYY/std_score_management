@@ -60,7 +60,7 @@ public class ScoreManager extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("성적 관리");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(150, 150, 630, 503);
+		setBounds(460, 100, 630, 503);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

@@ -29,8 +29,8 @@ dependencies {
 
 jar {
 	version = 1.0
-	mainClassName= 'std_score_management.ScoreMain'
-	baseName= 'ScoreMain'
+	mainClassName= 'std_score_management.LoginUI'
+	baseName= 'LoginUI'
 	appendix = 'bin'
 	
 	manifest{

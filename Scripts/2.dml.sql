@@ -209,3 +209,7 @@ insert into score values (null, 20030, 501, 73);
 
 desc std_detail;
 select * from std_detail;
+
+desc login;
+insert into login values ('test', password('test'), 'superkim88@naver.com');
+select * from login;
