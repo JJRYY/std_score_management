@@ -35,9 +35,6 @@ public class ScoreAll extends JFrame implements ActionListener {
 	private JButton btnSel;
 	private JButton btnCancel;
 	private JPanel pSouth;
-	private JLabel lblText1;
-	private JLabel lblText2;
-	private JLabel lblText3;
 	private JLabel lblKor;
 	private JLabel lblEng;
 	private JLabel lblMath;
@@ -45,10 +42,6 @@ public class ScoreAll extends JFrame implements ActionListener {
 	private JLabel lblSci;
 	private JLabel lblSum;
 	private JLabel lblAvg;
-	private JLabel lblText4;
-	private JLabel lblText5;
-	private JLabel lblText6;
-	private JLabel lblText7;
 
 	public ScoreAll() {
 		service = new StudentScoreAllService();
@@ -101,53 +94,60 @@ public class ScoreAll extends JFrame implements ActionListener {
 		contentPane.add(pSouth, BorderLayout.SOUTH);
 		pSouth.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lblText1 = new JLabel("국어 :");
+		JLabel lblText1 = new JLabel("국어 :");
 		lblText1.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText1);
 		
 		lblKor = new JLabel("");
+		lblKor.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblKor);
 		
-		lblText2 = new JLabel("영어 :");
+		JLabel lblText2 = new JLabel("영어 :");
 		lblText2.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText2);
 		
 		lblEng = new JLabel("");
+		lblEng.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblEng);
 		
-		lblText3 = new JLabel("수학 :");
+		JLabel lblText3 = new JLabel("수학 :");
 		lblText3.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText3);
 		
 		lblMath = new JLabel("");
+		lblMath.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblMath);
 		
-		lblText4 = new JLabel("사회 :");
+		JLabel lblText4 = new JLabel("사회 :");
 		lblText4.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText4);
 		
 		lblSoc = new JLabel("");
+		lblSoc.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSoc);
 		
-		lblText5 = new JLabel("과학 :");
+		JLabel lblText5 = new JLabel("과학 :");
 		lblText5.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText5);
 		
 		lblSci = new JLabel("");
+		lblSci.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSci);
 		
-		lblText6 = new JLabel("총점 :");
+		JLabel lblText6 = new JLabel("총점 :");
 		lblText6.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText6);
 		
 		lblSum = new JLabel("");
+		lblSum.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSum);
 		
-		lblText7 = new JLabel("평균 :");
+		JLabel lblText7 = new JLabel("평균 :");
 		lblText7.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblText7);
 		
 		lblAvg = new JLabel("");
+		lblAvg.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblAvg);
 		
 		setLabelAvg();
