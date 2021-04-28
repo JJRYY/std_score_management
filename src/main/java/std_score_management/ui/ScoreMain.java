@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import std_score_management.ui.content.ScoreAvgChartPanel;
+import java.awt.BorderLayout;
+
 @SuppressWarnings("serial")
 public class ScoreMain extends JFrame implements ActionListener {
 
@@ -19,22 +22,23 @@ public class ScoreMain extends JFrame implements ActionListener {
 	private JButton btnScoreAll;
 	private JButton btnBan;
 	private JButton btnStd;
+	private ScoreAvgChartPanel scoreAvgChartPanel;
 
 	public ScoreMain() {
 		initialize();
-		
 	}
+	
 	private void initialize() {
 		setTitle("학생 성적 관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 360, 300);
+		setBounds(100, 100, 880, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		contentPane.setLayout(new BorderLayout(10, 0));
 		
 		JPanel pBtn = new JPanel();
-		contentPane.add(pBtn);
+		contentPane.add(pBtn, BorderLayout.WEST);
 		
 		btnStd = new JButton("학생정보");
 		btnStd.addActionListener(this);
@@ -56,6 +60,9 @@ public class ScoreMain extends JFrame implements ActionListener {
 		btnBan = new JButton("분반 관리");
 		btnBan.addActionListener(this);
 		pBtn.add(btnBan);
+		
+		scoreAvgChartPanel = new ScoreAvgChartPanel();
+		contentPane.add(scoreAvgChartPanel, BorderLayout.CENTER);
 	}
 
 	public void actionPerformed(ActionEvent e) {

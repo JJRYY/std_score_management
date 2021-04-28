@@ -24,6 +24,7 @@ dependencies {
     testImplementation 'junit:junit:4.13'
      // https://mvnrepository.com/artifact/com.toedter/jcalendar
 	implementation group: 'com.toedter', name: 'jcalendar', version: '1.4'
+	implementation group: 'jfree', name: 'jfreechart', version: '1.0.13'
    
 }
 

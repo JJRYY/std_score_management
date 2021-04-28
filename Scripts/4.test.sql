@@ -140,4 +140,4 @@ select id, passwd, email from login where id='test' and passwd=password('test');
 select * from vw_student_score;
 select avg(국어) from vw_student_score;
 select avg(국어) from vw_student_score where banCode = 'A01';
-select avg(sumScore) from vw_student_score where banCode = 'A01';
+select avg(avgScore) from vw_student_score where banCode = 'A01';
