@@ -31,9 +31,9 @@ public class ScoreByBan extends JFrame implements ActionListener {
 	private StudentScoreTablePanel pList;
 	private ScoreByBanContentPanel pContent;
 	private JPanel pSouth;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
+	private JLabel lblText1;
+	private JLabel lblText2;
+	private JLabel lblText3;
 	private JLabel lblKor;
 	private JLabel lblEng;
 	private JLabel lblMath;
@@ -41,10 +41,10 @@ public class ScoreByBan extends JFrame implements ActionListener {
 	private JLabel lblSci;
 	private JLabel lblSum;
 	private JLabel lblAvg;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
+	private JLabel lblText4;
+	private JLabel lblText5;
+	private JLabel lblText6;
+	private JLabel lblText7;
 
 	public ScoreByBan() {
 		service = new StudentScoreAllService();
@@ -96,57 +96,57 @@ public class ScoreByBan extends JFrame implements ActionListener {
 		contentPane.add(pSouth, BorderLayout.SOUTH);
 		pSouth.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		label = new JLabel("국어");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(label);
+		lblText1 = new JLabel("국어 :");
+		lblText1.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText1);
 		
 		lblKor = new JLabel("");
 		lblKor.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblKor);
 		
-		label_1 = new JLabel("영어");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(label_1);
+		lblText2 = new JLabel("영어 :");
+		lblText2.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText2);
 		
 		lblEng = new JLabel("");
 		lblEng.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblEng);
 		
-		label_2 = new JLabel("수학");
-		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(label_2);
+		lblText3 = new JLabel("수학 :");
+		lblText3.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText3);
 		
 		lblMath = new JLabel("");
 		lblMath.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblMath);
 		
-		lblNewLabel = new JLabel("사회");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(lblNewLabel);
+		lblText4 = new JLabel("사회 :");
+		lblText4.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText4);
 		
 		lblSoc = new JLabel("");
 		lblSoc.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSoc);
 		
-		lblNewLabel_1 = new JLabel("과학");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(lblNewLabel_1);
+		lblText5 = new JLabel("과학 :");
+		lblText5.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText5);
 		
 		lblSci = new JLabel("");
 		lblSci.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSci);
 		
-		lblNewLabel_2 = new JLabel("총점");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(lblNewLabel_2);
+		lblText6 = new JLabel("총점 :");
+		lblText6.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText6);
 		
 		lblSum = new JLabel("");
 		lblSum.setHorizontalAlignment(SwingConstants.RIGHT);
 		pSouth.add(lblSum);
 		
-		lblNewLabel_3 = new JLabel("평균");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		pSouth.add(lblNewLabel_3);
+		lblText7 = new JLabel("평균 :");
+		lblText7.setHorizontalAlignment(SwingConstants.RIGHT);
+		pSouth.add(lblText7);
 		
 		lblAvg = new JLabel("");
 		lblAvg.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -177,30 +177,107 @@ public class ScoreByBan extends JFrame implements ActionListener {
 	protected void actionPerformedBtnSel(ActionEvent e) {
 		Ban ban = pContent.getBan();
 		String subject = pContent.getSubject().getSubjectName();
+		
+		int sumKor = 0;
+		int sumEng = 0;
+		int sumMath = 0;
+		int sumSoc = 0;
+		int sumSci = 0;
+		int sumAll = 0;
+		double sumAvg = 0.0;
+		
+		double avgKor = 0.0;
+		double avgEng = 0.0;
+		double avgMath = 0.0;
+		double avgSoc = 0.0;
+		double avgSci = 0.0;
+		double avgSum = 0.0;
+		double avgAll = 0.0;
 
 		if (ban != null && subject != null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreByBanSubject(ban, subject);
+			for (StudentScoreAll s : stdList) {
+				sumKor += s.getKor();
+				sumEng += s.getEng();
+				sumMath += s.getMath();
+				sumSoc += s.getSoc();
+				sumSci += s.getSci();
+				sumAll += s.getSum();
+				sumAvg += s.getAvg();
+			}
+			avgKor = (double) sumKor / stdList.size();
+			avgEng = (double) sumEng / stdList.size();
+			avgMath = (double) sumMath / stdList.size();
+			avgSoc = (double) sumSoc / stdList.size();
+			avgSci = (double) sumSci / stdList.size();
+			avgSum = (double) sumAll / stdList.size();
+			avgAll = sumAvg / stdList.size();
+			
 			pList.setInitList(stdList);
 			pList.setList();
 		} else if (ban != null && subject == null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreByBan(ban);
+			for (StudentScoreAll s : stdList) {
+				sumKor += s.getKor();
+				sumEng += s.getEng();
+				sumMath += s.getMath();
+				sumSoc += s.getSoc();
+				sumSci += s.getSci();
+				sumAll += s.getSum();
+				sumAvg += s.getAvg();
+			}
+			avgKor = (double) sumKor / stdList.size();
+			avgEng = (double) sumEng / stdList.size();
+			avgMath = (double) sumMath / stdList.size();
+			avgSoc = (double) sumSoc / stdList.size();
+			avgSci = (double) sumSci / stdList.size();
+			avgSum = (double) sumAll / stdList.size();
+			avgAll = sumAvg / stdList.size();
+			
 			pList.setInitList(stdList);
 			pList.setList();
 		} else if (ban == null && subject != null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreOrderBySubject(subject);
+			for (StudentScoreAll s : stdList) {
+				sumKor += s.getKor();
+				sumEng += s.getEng();
+				sumMath += s.getMath();
+				sumSoc += s.getSoc();
+				sumSci += s.getSci();
+				sumAll += s.getSum();
+				sumAvg += s.getAvg();
+			}
+			avgKor = (double) sumKor / stdList.size();
+			avgEng = (double) sumEng / stdList.size();
+			avgMath = (double) sumMath / stdList.size();
+			avgSoc = (double) sumSoc / stdList.size();
+			avgSci = (double) sumSci / stdList.size();
+			avgSum = (double) sumAll / stdList.size();
+			avgAll = sumAvg / stdList.size();
+			
 			pList.setInitList(stdList);
 		} else if (ban == null && subject == null) {
 			List<StudentScoreAll> stdList = service.showStudentScoreOrderByAvg();
+			for (StudentScoreAll s : stdList) {
+				sumKor += s.getKor();
+				sumEng += s.getEng();
+				sumMath += s.getMath();
+				sumSoc += s.getSoc();
+				sumSci += s.getSci();
+				sumAll += s.getSum();
+				sumAvg += s.getAvg();
+			}
+			avgKor = (double) sumKor / stdList.size();
+			avgEng = (double) sumEng / stdList.size();
+			avgMath = (double) sumMath / stdList.size();
+			avgSoc = (double) sumSoc / stdList.size();
+			avgSci = (double) sumSci / stdList.size();
+			avgSum = (double) sumAll / stdList.size();
+			avgAll = sumAvg / stdList.size();
+			
 			pList.setInitList(stdList);
 		}
 		
-		double avgKor = service.avgSubjectScoreByBan("국어", ban);
-		double avgEng = service.avgSubjectScoreByBan("영어", ban);
-		double avgMath = service.avgSubjectScoreByBan("수학", ban);
-		double avgSoc = service.avgSubjectScoreByBan("사회", ban);
-		double avgSci = service.avgSubjectScoreByBan("과학", ban);
-		double avgSum = service.avgSubjectScoreByBan("sumScore", ban);
-		double avgAll = service.avgSubjectScoreByBan("avgScore", ban);
 		lblKor.setText(String.format("%.2f", avgKor));
 		lblEng.setText(String.format("%.2f", avgEng));
 		lblMath.setText(String.format("%.2f", avgMath));
