@@ -40,7 +40,7 @@ public class StudentDetailManager extends JFrame implements ActionListener {
 	private void initialize(boolean isBtns) {
 		setTitle("학생 상세 정보");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(1180, 100, 450, 320);
+		setBounds(980, 400, 450, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

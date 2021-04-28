@@ -49,7 +49,7 @@ public class StudentManager extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("학생 관리");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(460, 100, 720, 300);
+		setBounds(980, 100, 720, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

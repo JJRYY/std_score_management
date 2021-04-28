@@ -46,7 +46,7 @@ public class ScoreByBan extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("분반별 성적");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(460, 100, 750, 400);
+		setBounds(980, 100, 750, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 10));
