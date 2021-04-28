@@ -57,4 +57,12 @@ public class StudentScoreAllService {
 	public List<StudentScoreAll> showStudentScoreByBanSubject(Ban ban, String s){
 		return stdScoreAllDao.selectStudentScoreByBanSubject(ban, s);
 	}
+	
+	public double avgSubjectScore(String s) {
+		return stdScoreAllDao.avgSubjectScore(s);
+	}
+	
+	public double avgSubjectScoreByBan(String s, Ban ban) {
+		return stdScoreAllDao.avgSubjectScoreByBan(s, ban);
+	}
 }

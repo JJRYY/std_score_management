@@ -135,3 +135,9 @@ select stdNo, stdName, banCode, 국어, 영어, 수학, 사회, 과학, sumScore
 -- 로그인 아이디 조회
 select id, passwd, email from login;
 select id, passwd, email from login where id='test' and passwd=password('test');
+
+-- 반별 평균점수 가져오기
+select * from vw_student_score;
+select avg(국어) from vw_student_score;
+select avg(국어) from vw_student_score where banCode = 'A01';
+select avg(sumScore) from vw_student_score where banCode = 'A01';

@@ -22,4 +22,8 @@ public interface StudentScoreAllDao {
 	List<StudentScoreAll> selectStudentScoreByBan(Ban ban);
 	
 	List<StudentScoreAll> selectStudentScoreByBanSubject(Ban ban, String s);
+	
+	double avgSubjectScore(String s);
+	
+	double avgSubjectScoreByBan(String s, Ban ban);
 }	

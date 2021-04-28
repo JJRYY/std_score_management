@@ -217,6 +217,40 @@ public class StudentScoreAllDaoImpl implements StudentScoreAllDao {
 		return null;
 	}
 
+	@Override
+	public double avgSubjectScoreByBan(String s, Ban ban) {
+		String sql = "select avg(" + s + ") from vw_student_score where banCode = ?";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, ban.getBanCode());
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getDouble(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public double avgSubjectScore(String s) {
+		String sql = "select avg(" + s + ") from vw_student_score";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getDouble(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 	
 
 }

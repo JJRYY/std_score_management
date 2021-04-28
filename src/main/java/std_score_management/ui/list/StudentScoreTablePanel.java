@@ -12,6 +12,8 @@ import std_score_management.ui.exception.NotSelectedException;
 
 @SuppressWarnings("serial")
 public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScoreAll> {
+	public StudentScoreTablePanel() {
+	}
 	private StudentScoreAllService service;
 	
 	@Override
@@ -34,7 +36,7 @@ public class StudentScoreTablePanel extends AbstractCustomTablePanel<StudentScor
 		setTableCellAlign(SwingConstants.RIGHT, 3, 4, 5, 6, 7, 8, 9);
 
 		// 컬럼별 너비 조정
-		setTableCellWidth(80, 80, 80, 50, 40, 40, 40, 40, 60, 60);
+		setTableCellWidth(80, 80, 80, 40, 40, 40, 40, 40, 60, 60);
 		
 	}
 	

@@ -16,6 +16,7 @@ import std_score_management.dto.Subject;
 import std_score_management.service.StudentScoreAllService;
 import std_score_management.ui.content.ScoreAllTopPanel;
 import std_score_management.ui.list.StudentScoreTablePanel;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class ScoreAll extends JFrame implements ActionListener {
@@ -30,6 +31,17 @@ public class ScoreAll extends JFrame implements ActionListener {
 	private JPanel pBtn;
 	private JButton btnSel;
 	private JButton btnCancel;
+	private JPanel pSouth;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblKor;
+	private JLabel lblEng;
+	private JLabel lblMath;
+	private JLabel lblSoc;
+	private JLabel lblSci;
+	private JLabel lblSum;
+	private JLabel lblAvg;
 
 	public ScoreAll() {
 		service = new StudentScoreAllService();
@@ -76,6 +88,40 @@ public class ScoreAll extends JFrame implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
+		
+		pSouth = new JPanel();
+		contentPane.add(pSouth, BorderLayout.SOUTH);
+		pSouth.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		lblNewLabel = new JLabel("");
+		pSouth.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("");
+		pSouth.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("");
+		pSouth.add(lblNewLabel_2);
+		
+		lblKor = new JLabel("New label");
+		pSouth.add(lblKor);
+		
+		lblEng = new JLabel("New label");
+		pSouth.add(lblEng);
+		
+		lblMath = new JLabel("New label");
+		pSouth.add(lblMath);
+		
+		lblSoc = new JLabel("New label");
+		pSouth.add(lblSoc);
+		
+		lblSci = new JLabel("New label");
+		pSouth.add(lblSci);
+		
+		lblSum = new JLabel("New label");
+		pSouth.add(lblSum);
+		
+		lblAvg = new JLabel("New label");
+		pSouth.add(lblAvg);
 	}
 
 	public void actionPerformed(ActionEvent e) {
