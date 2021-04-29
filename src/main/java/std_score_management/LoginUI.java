@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import std_score_management.dto.Login;
 import std_score_management.service.LoginService;
 import std_score_management.ui.ScoreMain;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class LoginUI extends JFrame implements ActionListener {
@@ -49,7 +50,7 @@ public class LoginUI extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("성적관리 로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 360, 230);
+		setBounds(100, 100, 360, 190);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -67,6 +68,7 @@ public class LoginUI extends JFrame implements ActionListener {
 		pContent.setLayout(new GridLayout(0, 2, 5, 5));
 		
 		JLabel lblId = new JLabel("ID");
+		lblId.setFont(new Font("굴림", Font.BOLD, 20));
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		pContent.add(lblId);
 		
@@ -75,6 +77,7 @@ public class LoginUI extends JFrame implements ActionListener {
 		tfId.setColumns(10);
 		
 		JLabel lblPasswd = new JLabel("Password");
+		lblPasswd.setFont(new Font("굴림", Font.BOLD, 20));
 		lblPasswd.setHorizontalAlignment(SwingConstants.RIGHT);
 		pContent.add(lblPasswd);
 		
