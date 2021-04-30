@@ -36,7 +36,7 @@ public class BanManager extends JFrame implements ActionListener {
 	private void initialize() {
 		setTitle("분반 관리");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(460, 100, 300, 355);
+		setBounds(980, 100, 300, 355);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
